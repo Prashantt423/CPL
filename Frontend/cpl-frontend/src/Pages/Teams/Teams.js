@@ -1,11 +1,10 @@
-import "./teams.css"
+import "./teams.css";
 
-const Teams = () =>{
-    return(
-        <div className="bg-dark">
-            <h1>Teams</h1>
-        </div>
-        
-    )
-}
-export default Teams
+const Teams = () => {
+  return (
+    <div className="wrapper">
+      <h1>Teams</h1>
+    </div>
+  );
+};
+export default Teams;

@@ -1,0 +1,19 @@
+
+
+.navbar ul {
+   margin-top: 7em;
+
+}
+.navbar ul li {
+   list-style-type: none;
+   padding-bottom: 2em;
+
+}
+
+.navbar ul li a{
+    color:white;
+    text-decoration: none;
+    font-size: 1.2em;
+
+}
+ 

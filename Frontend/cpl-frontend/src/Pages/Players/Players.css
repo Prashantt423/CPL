@@ -1,0 +1,45 @@
+.wrapper{
+    background-color: #e5e5e5;
+    padding: 1em;
+    height: 81.5vh;
+}
+
+table {
+    border-collapse: collapse;
+    width: 100%;
+    margin-bottom: 20px;
+    
+}
+
+
+th,
+td {
+    border-bottom: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+}
+
+th {
+    background-color: #ECECEC;
+    text-align: center;
+}
+
+/* Alternating row colors for better readability */
+tr{
+    background-color: #f2f2f2;
+}
+
+/* Center text in the "Purchase Price" column */
+/* td:nth-child(3) {
+    text-align: left;
+} */
+
+/* Style the "Average," "SR," and "ECO" columns as numbers */
+td:nth-child(1),
+td:nth-child(2),
+td:nth-child(3),
+td:nth-child(4),
+td:nth-child(5),
+td:nth-child(6) {
+    text-align: center;
+}

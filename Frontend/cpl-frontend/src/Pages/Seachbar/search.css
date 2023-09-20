@@ -1,0 +1,12 @@
+.search-bar{
+    background-color: white;
+    padding: 2em;
+}
+
+input{
+    background-color: #DADADA;
+    padding: .8em 1em; 
+    width: 300px;
+    border-radius: 10px;
+    border: none;
+}
