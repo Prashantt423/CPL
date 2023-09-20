@@ -1,5 +1,49 @@
-.wrapper {
-    background-color: #e5e5e5;
-    padding: 1em;
-    height: 81.5vh;
+.card {
+    background-color: white;
+    margin: 2em;
+    padding: 2em;
+    box-shadow: 2px 3px 29px 4px #d6d5d5;
+    margin-top: 150px;
+    border-radius: 20px;
+}
+
+table {
+    border-collapse: collapse;
+    width: 100%;
+    padding-top: 3rem;
+    margin-bottom: 20px;
+
+}
+
+
+th {
+    padding: 10px;
+    text-align: left;
+    border: none;
+}
+
+td {
+    /* border-bottom: 1px solid #ddd; */
+    padding: 10px;
+    text-align: left;
+    border: none;
+    font-size: .9em;
+
+}
+
+th {
+    /* background-color: #ECECEC; */
+    text-align: center;
+}
+
+td:nth-child(1),
+th:nth-child(1) {
+    text-align: left;
+}
+
+
+/* Style the "Average," "SR," and "ECO" columns as numbers */
+
+td{
+    text-align: center;
 }

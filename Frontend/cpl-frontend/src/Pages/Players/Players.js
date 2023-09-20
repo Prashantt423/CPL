@@ -2,7 +2,7 @@ import "./Players.css";
 
 const Players = () => {
   return (
-    <div className="wrapper">
+    <div className="card">
       <h1>Players</h1>
 
       <div className="table-wrapper">

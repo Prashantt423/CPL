@@ -4,22 +4,30 @@
    padding-left: 0.5rem;
 }
 .navbar ul {
-   margin-top: 6em;
+   margin-top: 1em;
+   display: flex;
+   flex-direction: column;
 
 }
 .navbar ul li {
    list-style-type: none;
-   padding-bottom: 2em;
-   margin-top: 20px;
-
+   margin-top: 50px;
 }
 
 .navbar ul li a{
     color:white;
     text-decoration: none;
-    font-size: 1rem;
-   
-    padding-left: 2rem;
+    font-size: 1.2rem;
+    padding-left: 0rem;
 
 }
  
+.logo{
+   height: 62px;
+   margin-top: 30px;
+   margin-left: 22px;
+}
+
+.nav-icons{
+   margin-right: 10px;
+}
