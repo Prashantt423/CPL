@@ -1,19 +1,25 @@
 
-
+.navbar img{
+   padding-top: 1rem;
+   padding-left: 0.5rem;
+}
 .navbar ul {
-   margin-top: 7em;
+   margin-top: 6em;
 
 }
 .navbar ul li {
    list-style-type: none;
    padding-bottom: 2em;
+   margin-top: 20px;
 
 }
 
 .navbar ul li a{
     color:white;
     text-decoration: none;
-    font-size: 1.2em;
+    font-size: 1rem;
+   
+    padding-left: 2rem;
 
 }
  

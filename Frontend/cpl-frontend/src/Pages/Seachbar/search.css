@@ -1,6 +1,12 @@
 .search-bar{
     background-color: white;
     padding: 2em;
+    
+}
+.search-button{
+    border: none;
+    font-size: 1rem;
+    
 }
 
 input{
