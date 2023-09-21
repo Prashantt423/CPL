@@ -7,7 +7,7 @@ body {
 
 .navbar {
   background-color: #0B1D46;
-  width: 16.5%;
+  width: 15vw;
   float: left;
   height: 100vh;
   position: fixed;
@@ -16,10 +16,19 @@ body {
 
 .main-wrapper{
   background-color: white;
-  width: 83.5%;
+  width: 84vw;
   float: right;
   display: flex;
   flex-direction: column;
   
+}
+
+.card {
+  background-color: white;
+  margin: 1.3vw;
+  padding: 2em;
+  box-shadow: 2px 3px 29px 4px #d6d5d5;
+  margin-top: 9vw;
+  border-radius: 20px;
 }
 

@@ -1,5 +1,5 @@
 import "./Nav.css";
-import logo from "./logo.png";
+import logo from "../Assets/Images/logo/logo.png";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTableColumns } from "@fortawesome/free-solid-svg-icons";
 import { faPeopleGroup } from "@fortawesome/free-solid-svg-icons";
@@ -26,13 +26,19 @@ const Nav = () => {
             </Link>
           </li>
           <li>
-            <Link to="/players"><span className="nav-icons">{teamIcon}</span> Players</Link>
+            <Link to="/players">
+              <span className="nav-icons">{teamIcon}</span> Players
+            </Link>
           </li>
           <li>
-            <Link to="/teams"><span className="nav-icons">{peopeIcon}</span> Teams</Link>
+            <Link to="/teams">
+              <span className="nav-icons">{peopeIcon}</span> Teams
+            </Link>
           </li>
           <li>
-            <Link to="/auction"><span className="nav-icons">{auctionIcon}</span> Auction</Link>
+            <Link to="/auction">
+              <span className="nav-icons">{auctionIcon}</span> Auction
+            </Link>
           </li>
         </ul>
       </nav>

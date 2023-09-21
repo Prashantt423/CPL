@@ -1,5 +1,105 @@
-.wrapper{
-    background-color: #e5e5e5;
-    padding: 1em;
-    height: 81.5vh;
+.dashboard-cards{
+    display: flex;
+    justify-content: space-between;
+}
+
+.stats-card{
+   
+    width: 15vw;
+    padding: 1.3em 1em;
+    display: flex;
+    justify-content: space-between;
+    border-radius: 10px;
+}
+
+.stats-card:nth-child(1){
+    background-color: #F7FFF9;
+    color: #296739;
+}
+.stats-card:nth-child(2){
+    background-color: #F8F1DB;
+    color:#91741D;
+}
+.stats-card:nth-child(3){
+    background-color: #E9F4FF;
+    color: #195391;
+}
+.stats-card:nth-child(4){
+    background-color: #F7F2FF;
+    color: #413f3f;
+}
+
+.card-numbers{
+    font-size: 2vw;
+    margin: 0px;
+    font-weight: 700;
+}
+
+.card-text{
+margin: 0px;
+}
+
+.card-icons{
+    font-size: 3em;
+}
+
+.tables-div{
+    display: flex;
+    
+    justify-content: space-between;
+    padding: 3vw 0vw;
+}
+
+.table{
+    background-color: white;
+    padding: 1vw 2vw;
+    box-shadow: 2px 3px 10px 4px #e9e8e8;
+    border-radius: 10px;
+}
+
+.table-head{
+    display: flex;
+    justify-content: space-between;
+}
+
+.teams-table{
+    width: 25vw;
+}
+.players-table{
+    width: 40vw;
+}
+
+.table-head{
+    font-weight: bold;
+    font-size: 1.3vw;
+}
+
+.table-head button{
+    background-color:#0B1D46;
+    color: white;
+    border: none;
+    width: 5vw;
+    height: 30px;
+    border-radius: 6px;
+    font-size: .7em;
+    margin-top: 15px;
+    cursor: pointer;
+}
+
+
+.teams-table td{
+    text-align: left;
+    font-size: .8vw;
+    font-weight: bold;
+}
+.players-table td{
+    text-align: left;
+    font-size: .8vw;
+}
+
+
+.team-logo{
+    height: 2vw;
+    
+
 }
