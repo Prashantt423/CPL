@@ -6,6 +6,7 @@ import Auction from "./Pages/Auction/Auction";
 import { BrowserRouter as Router } from "react-router-dom";
 import { Routes, Route } from "react-router-dom";
 import Searchbar from "./Pages/Seachbar/Searchbar";
+import Form from "./Pages/add player/Form";
 
 function App() {
   return (
@@ -21,6 +22,7 @@ function App() {
               <Route path="/players" element={<Players />} />
               <Route path="/teams" element={<Teams />} />
               <Route path="/auction" element={<Auction />} />
+              <Route path="/form" element={<Form/>}/>
             </Routes>
           </div>
         </Router>

@@ -1,4 +1,16 @@
-
+.header{
+    display: flex;
+    align-items: center;
+    gap: 58rem;
+}
+.add-player{
+    padding: 10px 30px;
+    color: #fff;
+    background-color: rgb(43, 42, 42);
+    border-radius: 10px;
+    cursor: pointer;
+    text-decoration: none;
+}
 table {
     border-collapse: collapse;
     width: 100%;

@@ -1,0 +1,204 @@
+.wrapper{
+    margin-top: 9rem;
+ 
+    display: flex;
+    gap: 4rem;
+    
+}
+.left-card{
+    margin-left: 3rem;
+    width: 27rem;
+    height: 34rem;
+    border: 1px solid black;
+    border-radius: 2.1rem;
+    box-shadow: 1px 1px 3px 0px black;
+}
+.player-img{
+    width: 240px;
+    height: 240px;
+    padding-left: 5.9rem;
+    padding-top: 2rem;
+}
+.player-name{
+    text-align: center;
+    font-size: 1.4rem;
+    font-weight: bolder;
+}
+.player-details{
+    display: flex;
+    align-items: center;
+    line-height: 0.6;
+    justify-content: space-between;
+    margin-right: 1rem;
+}
+.price{
+    padding-top: 0.2rem;
+    padding-left: 1.5rem;
+
+}
+.base-price{
+    font-size: 1rem;
+    color: rgb(83, 83, 83);
+}
+.price-value{
+    padding-left: 0.7rem;
+    font-weight: 800;
+    color: black;
+}
+.type-head{
+    padding-left: 0.7rem;
+    color: rgb(83, 83, 83);
+}
+.type-value{
+    font-weight: 800;
+}
+.runs{
+    color: rgb(83, 83, 83);
+}
+.runs-value{
+    padding-left: 0.2rem;
+    font-weight: 900;
+}
+.wicket-value{
+    padding-left: 1rem;
+    font-weight: 900;
+}
+.wicket {
+    color: rgb(83, 83, 83);  
+}
+.btn1{
+    padding-left: 4.2rem;
+    padding-top: 2rem;
+}
+.sold-btn{
+    padding: 10px 130px;
+    font-size: 1.1rem;
+    color: white;
+    background-color: rgb(67, 67, 168);
+    border-radius: 0.3rem;
+    cursor: pointer;
+}
+.right-card{
+    width: 43rem;
+    height: 34rem;
+    border: 1px solid black;
+    border-radius: 2.1rem;
+    box-shadow: 1px 1px 3px 0px black;
+}
+.heading{
+    padding-left: 1.2rem;
+}
+.bidding{
+    display: flex;
+    align-items: center;
+}
+.bid-price{
+    /* padding-top: 10px; */
+    padding-left: 1.2rem;
+}
+.bid-price label{
+    font-size: 1rem;
+    color: black;
+    font-weight: 600;
+}
+.bid-price input{
+    margin-left: 1rem;
+    width: 7rem;
+    font-size: 1rem;
+    font-weight: bolder;
+    padding-left: 0.4rem;
+}
+.plus1{
+
+    padding-left: 9rem;
+}
+.hundred{
+    padding: 10px 20px;
+    background-color: rgb(215, 215, 215);
+    border: none;
+}
+.plus2{
+    padding-left: 1.5rem;
+
+}
+.two-hundred{
+    padding: 10px 20px;
+    background-color: rgb(215, 215, 215);
+    border: none;
+}
+.plus3{
+    padding-left: 1.5rem;
+}
+.five-hundred{
+    padding: 10px 20px;
+    border: none;
+    background-color: rgb(215, 215, 215);
+}
+.btn3{
+    padding-top: 2rem;
+    /* padding-left: 10.5rem; */
+    text-align: center;
+}
+.update-btn{
+    padding: 10px 40px;
+    font-size: 1rem;
+    color: #fff;
+    background-color: rgb(67, 67, 168);
+    border-radius: 6px;
+}
+.team-details{
+    display: flex;
+    align-items: center;
+    margin-top: 4rem;
+}
+
+.new-team label{
+    padding-left: 2.6rem;
+    font-size: 1rem;
+    font-weight: 600;
+}
+.new-team select{
+    margin-left: 1.3rem;
+    padding:4px 10px;
+    background-color: rgb(185, 165, 165);
+    width: 7.6rem;
+    border: none;
+    font-size: 1rem;
+    font-weight: bolder;
+    padding-left: 0.4rem;
+}
+.sold-data{
+    padding-left: 2.4rem;
+    margin-top: 1rem;
+    line-height:0.8;
+}
+.sold{
+    font-size: 1rem;
+    font-weight: 600;
+    color: rgb(92, 91, 91);
+}
+.sold-value{
+    color: black;
+    font-size: 1.2rem;
+    padding-left: 1.6rem;
+    font-weight: 800;
+}
+.unsold-data{
+    padding-left: 6rem;
+    margin-top: 1rem;
+    line-height: 0.8;
+}
+.unsold{
+    font-size: 1rem;
+    font-weight: 600;
+    color: rgb(92, 91, 91);
+}
+.unsold-value{
+    color: black;
+    font-size: 1.2rem;
+    padding-left: 1.6rem;
+    font-weight: 800;
+}
+.next-player{
+    padding-top: 3rem;
+}

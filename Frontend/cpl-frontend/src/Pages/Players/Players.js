@@ -1,9 +1,21 @@
 import "./Players.css";
+import { Link } from "react-router-dom";
 
 const Players = () => {
   return (
     <div className="card">
-      <h1>Players</h1>
+      <div className="header">
+        <div className="heading">
+        <h1>Players</h1>
+        </div>
+        <div className="add-btn">
+          <Link to="/form" className="add-player">Add New</Link>
+
+        </div>
+
+      </div>
+      
+
 
       <div className="table-wrapper">
         <table>

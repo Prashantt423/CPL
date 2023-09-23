@@ -1,0 +1,317 @@
+.container{
+    margin-top: 8rem;
+    width: 79rem;
+    height: 40rem;
+
+}
+.personal-details{
+    margin-top: 0.1rem;
+    display: flex;
+    flex-direction: column;
+    line-height: 0.8;
+}
+.personal-details h2{
+    margin-left: 22px;
+}
+.submit{
+    padding: 10px 30px;
+    color: #fff;
+    background-color: rgb(43, 42, 42);
+    border-radius: 10px;
+    cursor: pointer;
+}
+.col-1{
+    margin-top: 13px;
+    display: flex;
+    align-items: center;
+    gap: 10rem;
+
+}
+.name{
+    padding-left: 22px;
+}
+.name label{
+    font-size: 1rem;
+    color: rgb(16, 16, 96);
+}
+.name input{
+    margin-top: 10px;
+    width: 15rem;
+    height: 2rem;
+    background-color:#FAFAFA;
+    border: 1px solid #E3E3E3;
+    border-radius: 4px;
+}
+::placeholder{
+    padding-left: 10px;
+    color: #C2C2C2;
+    font-weight: 400;
+    font-size: 0.9rem;
+}
+.mob-num label{
+    font-size: 1rem;
+    color: rgb(16, 16, 96);
+}
+.mob-num input{
+    margin-top: 10px;
+    width: 15rem;
+    height: 2rem;
+    background-color:#FAFAFA;
+    border: 1px solid #E3E3E3;
+    border-radius: 4px;
+}
+.semester{
+    margin-right: 2rem;
+}
+.semester label{
+    font-size: 1rem;
+    color: rgb(16, 16, 96);
+}
+.semester select{
+    margin-top: 10px;
+    width: 15rem;
+    height: 2rem;
+    background-color:#FAFAFA;
+    border: 1px solid #E3E3E3;
+    border-radius: 4px;
+}
+.col-2{
+    margin-left: 22px;
+    margin-top: 8px;
+    display: flex;
+    align-items: center;
+    gap: 10rem;
+    margin-right: 4rem;
+}
+.dob label
+{
+    font-size: 1rem;
+    color: rgb(16, 16, 96);
+}
+.dob input{
+    margin-top: 10px;
+    width: 15rem;
+    height: 2rem;
+    background-color:#e8f3f4;
+    border: 1px solid #E3E3E3;
+    border-radius: 4px;
+}
+.branch-details label{
+    font-size: 1rem;
+    color: rgb(16, 16, 96);
+}
+.branch-details select{
+    margin-top: 10px;
+    width: 15rem;
+    height: 2rem;
+    background-color:#FAFAFA;
+    border: 1px solid #E3E3E3;
+    border-radius: 4px;
+}
+
+.photo label{
+    font-size: 1rem;
+    color: rgb(16, 16, 96);
+}
+.photo input{
+    margin-top: 10px;
+    width: 15rem;
+    height: 2rem;
+    background-color:#FAFAFA;
+    border: 1px solid #E3E3E3;
+    border-radius: 4px;
+}
+::placeholder{
+    padding-left: 10px;
+    color: #C2C2C2;
+    font-weight: 400;
+    font-size: 0.9rem;
+}
+.auction {
+    margin-top: 1rem;
+    display: flex;
+    flex-direction: column;
+    line-height: 0.8;
+}
+.auction h2{
+    margin-left: 22px;
+}
+.col-3{
+    padding-left: 22px;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+
+}
+.base-price label{
+    font-size: 1rem;
+    color: rgb(16, 16, 96);
+}
+.base-price input{
+    margin-top: 10px;
+    width: 10rem;
+    height: 2rem;
+    background-color:#FAFAFA;
+    border: 1px solid #E3E3E3;
+    border-radius: 4px;
+}
+.bid-price label{
+    padding-left: 1rem;
+    font-size: 1rem;
+    color: rgb(16, 16, 96);
+}
+.bid-price input{
+    margin-top: 10px;
+    width: 10rem;
+    height: 2rem;
+    background-color:#FAFAFA;
+    border: 1px solid #E3E3E3;
+    border-radius: 4px;
+}
+.prev-team{
+    margin-left: 3rem;
+}
+.prev-team label{
+    font-size: 1rem;
+    color: rgb(16, 16, 96);
+}
+.prev-team select{
+    margin-top: 10px;
+    width: 10rem;
+    height: 2rem;
+    background-color:#FAFAFA;
+    border: 1px solid #E3E3E3;
+    border-radius: 4px;
+}
+.currunt-team{
+    margin-left: 3rem;
+}
+.currunt-team label{
+    font-size: 1rem;
+    color: rgb(16, 16, 96);
+}
+.currunt-team select{
+    margin-top: 10px;
+    width: 10rem;
+    height: 2rem;
+    background-color:#FAFAFA;
+    border: 1px solid #E3E3E3;
+    border-radius: 4px;
+}
+.player-type{
+    margin-left: 3rem;
+}
+.player-type label{
+    font-size: 1rem;
+    color: rgb(16, 16, 96);
+}
+.player-type select{
+    margin-top: 10px;
+    width: 10rem;
+    height: 2rem;
+    background-color:#FAFAFA;
+    border: 1px solid #E3E3E3;
+    border-radius: 4px;
+}
+.statistics{
+    display:flex;
+    margin-left: 22px;
+    flex-direction: column;
+    line-height: 0.8;
+}
+.col-4{
+    display: flex;
+    align-items: center;
+    gap: 4rem;
+}
+.total-runs label{
+    font-size: 1rem;
+    color: rgb(16, 16, 96);
+}
+.total-runs input{
+    margin-top: 10px;
+    width: 10rem;
+    height: 2rem;
+    background-color:#FAFAFA;
+    border: 1px solid #E3E3E3;
+    border-radius: 4px;
+}
+.innings label{
+    font-size: 1rem;
+    color: rgb(16, 16, 96);
+}
+.innings input{
+    margin-top: 10px;
+    width: 10rem;
+    height: 2rem;
+    background-color:#FAFAFA;
+    border: 1px solid #E3E3E3;
+    border-radius: 4px;
+}
+.strike-rate label{
+    font-size: 1rem;
+    color: rgb(16, 16, 96);
+}
+.strike-rate input{
+    margin-top: 10px;
+    width: 10rem;
+    height: 2rem;
+    background-color:#FAFAFA;
+    border: 1px solid #E3E3E3;
+    border-radius: 4px;
+}
+.average label{
+    font-size: 1rem;
+    color: rgb(16, 16, 96);
+}
+.average input{
+    margin-top: 10px;
+    width: 10rem;
+    height: 2rem;
+    background-color:#FAFAFA;
+    border: 1px solid #E3E3E3;
+    border-radius: 4px;
+}
+.total-wickets label{
+    font-size: 1rem;
+    color: rgb(16, 16, 96);
+}
+.total-wickets input{
+    margin-top: 10px;
+    width: 10rem;
+    height: 2rem;
+    background-color:#FAFAFA;
+    border: 1px solid #E3E3E3;
+    border-radius: 4px;
+}
+.col-5{
+    display: flex;
+    align-items: center;
+    gap: 4rem;
+    margin-top: 10px;
+}
+.average-b label{
+    font-size: 1rem;
+    color: rgb(16, 16, 96);
+}
+.average-b input{
+    margin-top: 10px;
+    width: 10rem;
+    height: 2rem;
+    background-color:#FAFAFA;
+    border: 1px solid #E3E3E3;
+    border-radius: 4px;
+}
+.eco label{
+    font-size: 1rem;
+    color: rgb(16, 16, 96);
+}
+
+.eco input{
+    margin-top: 10px;
+    width: 10rem;
+    height: 2rem;
+    background-color:#FAFAFA;
+    border: 1px solid #E3E3E3;
+    border-radius: 4px;
+}
