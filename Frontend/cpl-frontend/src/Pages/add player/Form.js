@@ -11,6 +11,7 @@ const Form = () => {
             Add
           </button>
         </div>
+        
       </div>
       <div className="personal-details">
         <h2> Personal Details </h2>
@@ -167,7 +168,6 @@ const Form = () => {
             <label for="economy">ECO</label>
             <br/>
             <input id='economy' type="text" name="" placeholder="ECO"/>
-
           </div>
         </div>
       </div>
