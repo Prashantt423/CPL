@@ -11,7 +11,8 @@ process.on('uncaughtException', err => {
 
 dotenv.config({ path: './config.env' });
 
-const DB = 'mongodb+srv://tilakp1912:jlOLnyfCfaxo0uPI@tilak.3bx3a4n.mongodb.net/?retryWrites=true&w=majority';
+// const DB = 'mongodb+srv://tilakp1912:jlOLnyfCfaxo0uPI@tilak.3bx3a4n.mongodb.net/?retryWrites=true&w=majority';
+const DB = 'mongodb+srv://cpl1912:cpl1234@cpl.zvavdql.mongodb.net/?retryWrites=true&w=majority';
 mongoose.connect(DB, { useNewUrlParser: true, useUnifiedTopology: true })
     .then(() => console.log("The DB is Connected"))
     .catch((error) => console.log("Connection Failed", error.message));
