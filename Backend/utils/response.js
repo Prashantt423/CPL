@@ -6,4 +6,4 @@ const sendResponse = (res, statusCode, status, data) => {
     return res.status(statusCode).json(response);
 };
 
-module.exports = sendResponse; 
+module.exports = sendResponse;

@@ -30,21 +30,25 @@ app.use('/cpl', userRouter);
 app.use('/team', teamRouter);
 app.use('/player', playerRouter);
 
+
+
+
+// Error handling middleware
+app.use((err, req, res, next) => {
+    console.error(err.stack);
+    res.status(err.status || 500).json({
+        status: 'Error',
+        message: err.message || 'Something went wrong!',
+    });
+});
+
 app.all('*', (req, res) => {
+    console.log(0);
     res.status(404).json({
         status: 'Fail',
         message: `Can't find ${req.originalUrl} on this server!`,
     });
 });
-
-
-app.use((err, req, res, next) => {
-    return res.status(err.statusCode || 500).json({
-        status: err.status,
-        message: err.message
-    });
-});
-
 
 
 module.exports = app;

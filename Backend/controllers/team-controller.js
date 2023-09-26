@@ -1,4 +1,4 @@
-const Team = require('./../models/teams-model');
+const TeamModel = require('./../models/teams-model');
 const catchAsync = require('./../utils/catchAsync');
 const sendResponse = require('./../utils/response');
 const { teamSchemaValidation } = require('./../validator');
@@ -6,47 +6,57 @@ const path = require('path');
 const fs = require('fs');
 const { promisify } = require('util');
 const unlinkAsync = promisify(fs.unlink);
-const { upload, resizeImage } = require('./../utils/image-upload');
 
 
 // Create Team
-exports.teamCreate = [
-    upload.single('logo'),
-    resizeImage,
+exports.teamCreate = async (req, res) => {
+    if (!req.file) {
+        return sendResponse(res, 400, 'No file uploaded');
+    }
 
-    catchAsync((async (req, res) => {
-        const { error, value } = teamSchemaValidation.validate(req.body);
-        if (error) {
-            return sendResponse(res, 400, 'Validation error', error.details);
-        }
+    const data = {
+        name: req.body.name,
+        logo: req.file?.filename ?? "none",
+        bidPointBalance: req.body.bidPointBalance,
+        mentor: req.body.mentor,
+        captain: req.body.captain,
+        totalPlayer: req.body.totalPlayer
+    };
 
-        if (req.file) {
-            const logoData = req.file.filename;
-            value.logo = logoData;
-        }
-        const team = await Team.create(value);
-        return sendResponse(res, 201, 'Team created successfully', team);
-    }))];
+    const { error, value } = teamSchemaValidation.validate(data);
+
+    if (error) {
+        return sendResponse(res, 400, 'Validation error', error);
+    }
+
+    return sendResponse(res, 200, 'Team created successfully', {
+        team: await TeamModel.create(value)
+    });
+};
 
 
 // Update Team
-exports.updateTeam = [
-    upload.single('logo'),
-    resizeImage,
-
+exports.updateTeam =
     catchAsync(async (req, res) => {
-        const teamId = req.params.teamId;
-        const { error, value } = teamSchemaValidation.validate(req.body);
+        const teamId = req.params.teamID;
+        const data = {
+            name: req.body.name,
+            logo: req.file.filename,
+            bidPointBalance: req.body.bidPointBalance,
+            mentor: req.body.mentor,
+            captain: req.body.captain,
+            totalPlayer: req.body.totalPlayer
+        };
+        const { error, value } = teamSchemaValidation.validate(data);
         if (error) {
             return sendResponse(res, 400, 'Validation error', error.details);
         }
-        const currentTeam = await Team.findById(teamId);
+        const currentTeam = await TeamModel.findById(teamId);
         if (!currentTeam) {
             return sendResponse(res, 404, 'Team not found');
         }
-
         const oldLogoFileName = currentTeam.logo;
-        const updatedTeam = await Team.findByIdAndUpdate(teamId, value, {
+        const updatedTeam = await TeamModel.findByIdAndUpdate(teamId, value, {
             new: true,
             runValidators: true
         });
@@ -67,13 +77,13 @@ exports.updateTeam = [
             }
         }
         return sendResponse(res, 200, 'Team updated successfully', updatedTeam);
-    })];
+    });
 
 
 // Delete Team
 exports.deleteTeam = catchAsync(async (req, res) => {
-    const teamId = req.params.teamId;
-    const team = await Team.findByIdAndDelete(teamId);
+    const teamId = req.params.teamID;
+    const team = await TeamModel.findByIdAndDelete(teamId);
 
     if (!team) {
         return sendResponse(res, 404, 'Team not found');
@@ -95,16 +105,17 @@ exports.deleteTeam = catchAsync(async (req, res) => {
 
 // List All Teams
 exports.listAllTeams = catchAsync(async (req, res) => {
-    const teams = await Team.find();
+    const teams = await TeamModel.find();
     return sendResponse(res, 200, 'List of all teams', teams);
 });
 
 
 // Get Team by ID
 exports.getTeamById = catchAsync(async (req, res) => {
-    const teamId = req.params.teamId;
-    const team = await Team.findById(teamId);
-
+    const teamId = req.params.teamID;
+    console.log(teamId);
+    const team = await TeamModel.findById(teamId);
+    console.log(team);
     if (!team) {
         return sendResponse(res, 404, 'Team not found');
     }

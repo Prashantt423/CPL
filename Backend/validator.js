@@ -50,20 +50,18 @@ exports.teamSchemaValidation = Joi.object({
         'string.base': 'Team name should be a string',
         'any.required': 'Team name is required',
     }),
-    logo: Joi.string().required().messages({
-        'any.required': 'Logo is required',
-    }),
-    bidPointBalance: Joi.number().min(0).messages({
+    logo: Joi.string().meta({ type: 'file' }).required(),
+    bidPointBalance: Joi.number().required().min(0).messages({
         'number.base': 'Bid point balance should be a number',
         'number.min': 'Bid point balance should be at least {#limit}',
     }),
-    mentor: Joi.string().messages({
+    mentor: Joi.string().required().messages({
         'string.base': 'Mentor should be a string',
     }),
-    captain: Joi.string().messages({
+    captain: Joi.string().required().messages({
         'string.base': 'Captain should be a string',
     }),
-    totalPlayer: Joi.number().min(0).messages({
+    totalPlayer: Joi.number().required().min(0).messages({
         'number.base': 'Total players should be a number',
         'number.min': 'Total players should be at least {#limit}',
     }),
