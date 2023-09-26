@@ -7,8 +7,16 @@ import { BrowserRouter as Router } from "react-router-dom";
 import { Routes, Route } from "react-router-dom";
 import Searchbar from "./Pages/Seachbar/Searchbar";
 import Form from "./Pages/Players/add player/Form";
+import { useState } from "react";
+import Loginform from "./Pages/Login/Loginform";
 
 function App() {
+  const [loginFlag, setloginFlag] = useState(true);
+
+  if (loginFlag) {
+    return <Loginform />;
+  }
+
   return (
     <div className="">
       <div className="main-content">
