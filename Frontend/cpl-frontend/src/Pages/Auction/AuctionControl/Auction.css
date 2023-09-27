@@ -1,60 +1,138 @@
-.header {
-    display: flex;
-    align-items: center;
+.wrapper{
+    margin-top: 8vw;
+    display:flex;
+    padding: 2vw;
     justify-content: space-between;
 
 }
 
-.add-player {
-    padding: 10px 30px;
-    color: #fff;
-    background-color: rgb(43, 42, 42);
+.profile{
+    border: 1px solid #0B1D46;
     border-radius: 10px;
-    cursor: pointer;
-    text-decoration: none;
+    padding: 2vw;
+    width: 21vw;
+    box-shadow: 2px 3px 29px 4px #d6d5d5;
+    
 }
 
-.table-wrapper {
-    border-collapse: collapse;
-    width: 100%;
-    padding-top: 3rem;
-    margin-bottom: 20px;
-
+.profile img{
+    margin: auto;
+    height: 14vw;
+    display: block;
 }
 
+.playerName{
+    text-align: center;
+    font-size: 1.5vw;
+}
 
-th {
-    padding: 10px;
-    text-align: left;
+.auction-control{
+    border: 1px solid #0B1D46;
+    border-radius: 10px;
+    padding: 1vw;
+    width: 51vw;
+    box-shadow: 2px 3px 29px 4px #d6d5d5;
+}
+
+.player-summary{
+    display: flex;
+    justify-content: space-between;
+    
+}
+.player-summary div{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: .3vw;
+    text-align: center;
+    
+}
+
+.summary-title{
+    color: rgb(108, 108, 108);
+    font-size: .8vw;
+}
+
+.sold-wrapper{
+    display: flex;
+    justify-content: center;
+}
+
+.soldbtn, .update-bid-btn{
+    background-color: #0B1D46;
+    color:white;
+    padding: 1vw 6vw;
+    border: none;
+    text-align: center;
+    margin-top: 2vw;
+    font-weight: bold;
+    border-radius: 5px;
+}
+
+.bid-control{
+   margin-top: 2vw;
+    display: flex;
+    justify-content: space-evenly;
+    
+}
+
+.bid-control button{
+    padding: .5vw 2vw;
     border: none;
 }
 
-td {
-    /* border-bottom: 1px solid #ddd; */
-    padding: 10px;
-    text-align: left;
+.bid-input{
+    padding: .5vw 1vw;
     border: none;
-    font-size: .9em;
-
+    background-color: #e8e8e8;
+    margin-left: 2vw;
+    width: 8vw;
 }
 
-th {
-    /* background-color: #ECECEC; */
-    text-align: center;
+.update-bid-wrapper{
+    display: flex;
+    justify-content: center;
+    
 }
 
-td:nth-child(1),
-th:nth-child(1) {
-    text-align: left;
+.update-bid-btn{
+    padding: 1vw 3vw;
+}
+
+.nextplayer{
+    display: flex;
+    margin-top: 4vw;
+    padding: 2vw;
+    justify-content: space-between;
 }
 
 
-/* Style the "Average," "SR," and "ECO" columns as numbers */
+.nextplayer-right{
+    display: flex;
+    
+    
+}
 
-td:nth-child(2),
-td:nth-child(3),
-td:nth-child(4),
-td:nth-child(5),
-td:nth-child(6) {
-    text-align: center;
+.nextplayer-input{
+    padding: .5vw 1vw;
+        border: none;
+        background-color: #e8e8e8;
+        margin-left: 2vw;
+        width: 7vw;
+}
+
+.nextplayer-left table{
+    margin: 0px;
+} 
+.nextplayer-left label{
+    font-weight: 800;
+} 
+
+.stats-box{
+    padding: 1vw;
+    background-color: #e8e8e8;
+}
+
+.soldplayer-stats{
+ margin-right: 2vw;
 }
