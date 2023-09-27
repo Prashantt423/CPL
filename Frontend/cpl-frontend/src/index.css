@@ -2,12 +2,13 @@
 body {
   margin: 0;
   font-family: 'Nunito Sans', sans-serif;
+  
 }
 
 
 .navbar {
   background-color: #0B1D46;
-  width: 15vw;
+  width: 15.5%;
   float: left;
   height: 100vh;
   position: fixed;
@@ -15,10 +16,9 @@ body {
 }
 
 .main-wrapper{
-  background-color: white;
-  width: 84vw;
+  width: 84.5%;
   float: right;
-  display: flex;
+  /* display: flex; */
   flex-direction: column;
   
 }

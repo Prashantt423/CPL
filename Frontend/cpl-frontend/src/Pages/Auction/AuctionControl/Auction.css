@@ -1,0 +1,60 @@
+.header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+}
+
+.add-player {
+    padding: 10px 30px;
+    color: #fff;
+    background-color: rgb(43, 42, 42);
+    border-radius: 10px;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+.table-wrapper {
+    border-collapse: collapse;
+    width: 100%;
+    padding-top: 3rem;
+    margin-bottom: 20px;
+
+}
+
+
+th {
+    padding: 10px;
+    text-align: left;
+    border: none;
+}
+
+td {
+    /* border-bottom: 1px solid #ddd; */
+    padding: 10px;
+    text-align: left;
+    border: none;
+    font-size: .9em;
+
+}
+
+th {
+    /* background-color: #ECECEC; */
+    text-align: center;
+}
+
+td:nth-child(1),
+th:nth-child(1) {
+    text-align: left;
+}
+
+
+/* Style the "Average," "SR," and "ECO" columns as numbers */
+
+td:nth-child(2),
+td:nth-child(3),
+td:nth-child(4),
+td:nth-child(5),
+td:nth-child(6) {
+    text-align: center;
+}

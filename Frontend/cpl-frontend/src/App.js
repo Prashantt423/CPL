@@ -2,7 +2,7 @@ import Dashboard from "./Pages/Dashboard/Dashboard";
 import Players from "./Pages/Players/Players";
 import Teams from "./Pages/Teams/Teams";
 import Nav from "./Pages/Nav/Nav";
-import Auction from "./Pages/Auction/Auction";
+import AuctionScreen from "./Pages/Auction/AuctionControl/Auction";
 import { BrowserRouter as Router } from "react-router-dom";
 import { Routes, Route } from "react-router-dom";
 import Searchbar from "./Pages/Seachbar/Searchbar";
@@ -29,7 +29,7 @@ function App() {
               <Route path="/" element={<Dashboard />} />
               <Route path="/players" element={<Players />} />
               <Route path="/teams" element={<Teams />} />
-              <Route path="/auction" element={<Auction />} />
+              <Route path="/auctioncontrol" element={<AuctionScreen />} />
               <Route path="/form" element={<Form />} />
             </Routes>
           </div>

@@ -36,7 +36,7 @@ const Nav = () => {
             </Link>
           </li>
           <li>
-            <Link to="/auction">
+            <Link to="/auctioncontrol">
               <span className="nav-icons">{auctionIcon}</span> Auction
             </Link>
           </li>
