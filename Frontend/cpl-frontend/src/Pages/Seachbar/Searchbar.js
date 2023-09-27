@@ -8,7 +8,7 @@ const Searchbar = () => {
   return (
     <div className="search-bar">
       <div className="serch-input">
-        <input type="text" placeholder="Search " />{" "}
+        <input className="search-input" type="text" placeholder="Search " />{" "}
         <span className="search-icon">{searchIcon}</span>
       </div>
 

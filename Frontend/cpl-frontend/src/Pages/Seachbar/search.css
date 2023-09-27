@@ -1,6 +1,6 @@
 .search-bar{
     background-color: white;
-    padding: 2em;
+    padding: 1.5vw 2vw;
     box-shadow: 10px 0px 30px 1px #cfcdcd;
     z-index: 1;
     position: fixed;
@@ -16,7 +16,7 @@
     
 }
 
-input{
+.search-input{
     background-color: #DADADA;
     
     width: 480px;
