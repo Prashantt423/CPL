@@ -87,11 +87,14 @@
     background-color: #e8e8e8;
     margin-left: 2vw;
     width: 8vw;
+    font-size: 1.3vw;
+    font-weight: bold;
 }
 
 .update-bid-wrapper{
     display: flex;
     justify-content: center;
+    margin-top: 3vw;
     
 }
 
@@ -101,38 +104,63 @@
 
 .nextplayer{
     display: flex;
-    margin-top: 4vw;
+    margin-top: 2vw;
     padding: 2vw;
     justify-content: space-between;
 }
 
 
 .nextplayer-right{
-    display: flex;
-    
-    
+    display: flex;    
 }
 
 .nextplayer-input{
     padding: .5vw 1vw;
-        border: none;
-        background-color: #e8e8e8;
-        margin-left: 2vw;
-        width: 7vw;
+    border: none;
+    background-color: #e8e8e8;
+    margin-left: .5vw;
+    width: 7vw;
+    
 }
 
 .nextplayer-left table{
     margin: 0px;
 } 
+
+
 .nextplayer-left label{
-    font-weight: 800;
+    font-weight: 300;
+    font-size: 1.2vw;
+
 } 
 
 .stats-box{
-    padding: 1vw;
-    background-color: #e8e8e8;
+    padding: .5vw .7vw;
+    background-color: #F8F8F8;
+    text-align: center;
 }
 
 .soldplayer-stats{
  margin-right: 2vw;
+}
+
+.player-type-icon{
+    height: 1.2vw;
+    margin-bottom: 1vw;
+}
+
+
+.player-digit{
+    text-align: center;
+    padding: 1vw;
+    font-size: 1.3vw;
+    font-weight: 600;
+}
+
+.icon-wrapper{
+    display: flex;
+}
+.icon-wrapper div{
+    padding: 0vw .5vw;
+    text-align: center;
 }
