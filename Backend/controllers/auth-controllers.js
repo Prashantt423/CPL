@@ -71,7 +71,7 @@ exports.loginUser = catchAsync(async (req, res) => {
         return sendResponse(res, 200, 'User login successfully', { token });
 
     } else {
-        return next(new AppError('Invalid password', 401));
+        return (new AppError('Invalid password', 401));
 
     }
 

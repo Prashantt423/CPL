@@ -14,13 +14,13 @@ import Loginform from "./Pages/Login/Loginform";
 function App() {
   const [loginFlag, setloginFlag] = useState(true);
   if (loginFlag) {
-    return <Loginform />;
+    return <Loginform flag={setloginFlag} />;
   }
 
   return (
     <div className="">
       <div className="main-content">
-        <Router>
+        
         
   
           <Nav />
@@ -34,10 +34,11 @@ function App() {
               <Route path="/teams" element={<Teams />} />
               <Route path="/auctioncontrol" element={<AuctionScreen />} />
               <Route path="/form" element={<Form />} />
+              
   
             </Routes>
           </div>
-        </Router>
+        
       </div>
     </div>
   );

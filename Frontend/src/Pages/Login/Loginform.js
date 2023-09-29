@@ -6,30 +6,34 @@ import {useNavigate } from "react-router-dom";
 
 
 
-const Loginform = () => {
+const Loginform = ({flag}) => {
   const [dropDown, setDropDown] = useState("Admin");
   const [checkDropDown, setCheckDropdown] = useState("Knights");
   const [password, setPassword] = useState("");
-  const [email, setEmial] = useState("");
+  const [email, setEmail] = useState("");
   const navigate = useNavigate();
 
   const handleLogin  = async (e) =>{
-    e.preventDefault();
-    try{
-      await authService.logIn(email , password)
-      .then (()=>{
-        navigate("/")
-       
-        // window.location.reload()
-      },
-      (error) => {
-        console.log(error)
-      })
+      e.preventDefault();
+      try{
+        await authService.logIn(email , password).then(
+          () =>{
+            navigate("/" , {replace: true})
+            flag(false)
+            
+          }, (error) => {
+            console.log(error)
+          }
+
+        );
+      } catch(err){
+        console.log(err)
+      }
     }
-    catch (err){
-      console.log(err)
-    }
-  }
+  
+      
+      
+    
 
 
   let content;
@@ -76,13 +80,13 @@ const Loginform = () => {
               <option value="team">Team</option>
             </select>
             <input type="text" name="email" id="email" placeholder="Email" onChange={(e) => {
-              setEmial(e.target.value)
+              setEmail(e.target.value)
             }}/>
             <input type="password" name="password" placeholder="Password"  onChange={(e) =>{
               setPassword(e.target.value)
             }}/>
 
-            <button className="logo">LogIn</button>
+            <button className="logo" >LogIn</button>
             
           </form>
         </div>
