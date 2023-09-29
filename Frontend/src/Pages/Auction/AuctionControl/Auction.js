@@ -1,8 +1,15 @@
 import "./Auction.css";
 import playerlogo from "../../Assets/Images/player/player image.png";
+import allRounderlogo from "../../Assets/Images/player_type_icons/All_rounder.png";
+import batterlogo from "../../Assets/Images/player_type_icons/batter.png";
+import bowlerlogo from "../../Assets/Images/player_type_icons/bowler.png";
+import { useState } from "react";
 
 const AuctionScreen = () => {
   // const playerImage = playerlogo;
+
+  const [bidprice, setbidprice] = useState(1000);
+
   return (
     <div className="wrapper">
       <div className="profile">
@@ -38,10 +45,15 @@ const AuctionScreen = () => {
         <div className="bid-control">
           <div>
             <label>Biding Price</label>
-            <input className="bid-input" type="number" />
+            <input
+              value={bidprice}
+              id="bid-input"
+              className="bid-input"
+              type="number"
+            />
           </div>
 
-          <button>+ 100</button>
+          <button onClick={incrementBidPrice}>+ 100</button>
           <button>+ 500</button>
           <button>+ 1000</button>
         </div>
@@ -71,9 +83,71 @@ const AuctionScreen = () => {
               </tr>
             </table>
           </div>
+
           <div className="nextplayer-right">
-            <div className="soldplayer-stats stats-box">SOLD PLAYERS</div>
-            <div className="unsoldplayer-stats stats-box">UNSOLD PLAYERS</div>
+            {/* SOLD PLAYERS */}
+            <div className="soldplayer-stats stats-box">
+              SOLD PLAYERS
+              <div className="player-digit">145</div>
+              <div className="icon-wrapper">
+                <div>
+                  <img
+                    className="player-type-icon"
+                    src={batterlogo}
+                    alt="current player logo"
+                  />
+                  <span>149</span>
+                </div>
+                <div>
+                  <img
+                    className="player-type-icon"
+                    src={allRounderlogo}
+                    alt="current player logo"
+                  />
+                  <span>149</span>
+                </div>
+                <div>
+                  <img
+                    className="player-type-icon"
+                    src={bowlerlogo}
+                    alt="current player logo"
+                  />
+                  <span>149</span>
+                </div>
+              </div>
+            </div>
+
+            {/* UNSOLD PLAYER */}
+            <div className="soldplayer-stats stats-box">
+              UNSOLD PLAYERS
+              <div className="player-digit">145</div>
+              <div className="icon-wrapper">
+                <div>
+                  <img
+                    className="player-type-icon"
+                    src={batterlogo}
+                    alt="current player logo"
+                  />
+                  <span>149</span>
+                </div>
+                <div>
+                  <img
+                    className="player-type-icon"
+                    src={allRounderlogo}
+                    alt="current player logo"
+                  />
+                  <span>149</span>
+                </div>
+                <div>
+                  <img
+                    className="player-type-icon"
+                    src={bowlerlogo}
+                    alt="current player logo"
+                  />
+                  <span>149</span>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -81,3 +155,7 @@ const AuctionScreen = () => {
   );
 };
 export default AuctionScreen;
+
+function incrementBidPrice() {
+  alert("clicked");
+}
