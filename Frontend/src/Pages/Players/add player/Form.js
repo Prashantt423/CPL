@@ -27,27 +27,29 @@ const Form = () => {
     economy: "",
   });
 
-  const handleInputChange = (e) => {
-    const { name, value, type, files } = e.target;
+  const handleInputChange =(e) =>{
+    const {name , value , type , files} = e.target;
     setFormData({
       ...formData,
       [name]: type === "file" ? files[0] : value,
-    });
-  };
 
-  const handleSubmit = (e) => {
+    })
+
+  }
+  const handleSubmit = (e) =>{
     e.preventDefault();
-    console.log(formData);
-    const formDataJson = JSON.stringify(formData);
-    axios
-      .post("http://localhost:6001/player/add", formDataJson, {
-        headers: {
-          "Content-Type": "application/json",
-        },
-      })
-      .then((result) => console.log(result))
-      .catch((err) => console.log(err));
-  };
+    console.log(formData)
+    const formDataJson = JSON.stringify(formData)
+    axios.post("http://localhost:6001/player/add" , formDataJson, {
+      headers:{
+        "Content-Type" : "application/json"
+      }
+    })
+    .then(result => console.log(result))
+    .catch(err => console.log(err))
+  }
+ 
+
   return (
     <div className="container">
       <form onSubmit={handleSubmit}>
@@ -149,7 +151,7 @@ const Form = () => {
                   name="playerphoto"
                   type="file"
                   id="playerphoto"
-                  value={formData.playerphoto}
+                  // value={formData.playerphoto}
                   onChange={handleInputChange}
                 />
               </div>
