@@ -40,7 +40,7 @@ exports.registerUser = catchAsync(async (req, res) => {
 
 
 exports.loginUser = catchAsync(async (req, res) => {
-
+    console.log(1223);
     const { error, value } = validator.userLoginSchemaValidation.validate(req.body);
     if (error) {
         return res.status(400).json({

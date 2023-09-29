@@ -1,17 +1,39 @@
 import { React, useEffect, useState } from "react";
 import "./login.css";
 import logo from "../Assets/Images/logo/logo.png";
+import authService from "../../Services/auth.service";
+import {useNavigate } from "react-router-dom";
+
+
 
 const Loginform = () => {
-  const [DropDown, setDropDown] = useState("admin");
-  const [CheckDropdown, setCheckDropdown] = useState("Knights");
-  const [CheckPass, setCheckPass] = useState("");
-  const [User, setUser] = useState("");
-  const [message, setMessage] = useState("");
+  const [dropDown, setDropDown] = useState("Admin");
+  const [checkDropDown, setCheckDropdown] = useState("Knights");
+  const [password, setPassword] = useState("");
+  const [email, setEmial] = useState("");
+  const navigate = useNavigate();
+
+  const handleLogin  = async (e) =>{
+    e.preventDefault();
+    try{
+      await authService.logIn(email , password)
+      .then (()=>{
+        navigate("/")
+       
+        // window.location.reload()
+      },
+      (error) => {
+        console.log(error)
+      })
+    }
+    catch (err){
+      console.log(err)
+    }
+  }
+
 
   let content;
-
-  if (DropDown === "team") {
+  if (dropDown === "Team") {
     content = (
       <select
         name="team"
@@ -34,69 +56,38 @@ const Loginform = () => {
         <option value="Falcons">Falcons</option>
       </select>
     );
-  } else if (DropDown === "admin") {
-    content = (
-      <input
-        type="text"
-        placeholder="Username"
-        id="username"
-        onChange={(e) => {
-          setUser(e.target.value);
-        }}
-      />
-    );
   }
-
-  const submitHandler = (e) => {
-    e.preventDefault();
-
-    if (User === CheckPass) {
-      setMessage("User name and password cannot be the same");
-    } else if (CheckDropdown === CheckPass) {
-      setMessage("Team name and password cannot be the same");
-    } else if (CheckPass.length < 8) {
-      setMessage("Password is shorter than 8 Characters");
-    } else {
-      setMessage("Login Success!");
-    }
-  };
-
   return (
-    <>
-      <div className="background">
-        <div className="child child-position">
-          <div></div>
-          <img alt="CPL logo" src={logo}></img>
-          <div className="content">
-            <h3>Welcome</h3>
-            <p>Enter Your Credentials to Proceed</p>
+    <div className="background">
+      <div className="child child-position">
+        <img src={logo} alt="CPL logo" />
+        <div className="content">
+          <h3>Welcome</h3>
+          <p>Enter Your Credentials to Proceed</p>
+          <form onSubmit={handleLogin}>
+            <select
+              name="user"
+              id="user"
+              onChange={(e) => {
+                setDropDown(e.target.value);
+              }}
+            >
+              <option value="admin">Administrator</option>
+              <option value="team">Team</option>
+            </select>
+            <input type="text" name="email" id="email" placeholder="Email" onChange={(e) => {
+              setEmial(e.target.value)
+            }}/>
+            <input type="password" name="password" placeholder="Password"  onChange={(e) =>{
+              setPassword(e.target.value)
+            }}/>
 
-            <form onSubmit={submitHandler}>
-              <select
-                name="user"
-                id="user"
-                onChange={(e) => {
-                  setDropDown(e.target.value);
-                }}
-              >
-                <option value="admin">Administrator</option>
-                <option value="team">Team</option>
-              </select>
-              <input
-                type="password"
-                placeholder="Password"
-                onChange={(e) => {
-                  setCheckPass(e.target.value);
-                }}
-              />
-              <button className="logo">Login</button>
-              {content}
-            </form>
-          </div>
-          <div className="message">{message}</div>
+            <button className="logo">LogIn</button>
+            
+          </form>
         </div>
       </div>
-    </>
+    </div>
   );
 };
 

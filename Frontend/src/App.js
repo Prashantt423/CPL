@@ -10,9 +10,9 @@ import Form from "./Pages/Players/add player/Form";
 import { useState } from "react";
 import Loginform from "./Pages/Login/Loginform";
 
-function App() {
-  const [loginFlag, setloginFlag] = useState(false);
 
+function App() {
+  const [loginFlag, setloginFlag] = useState(true);
   if (loginFlag) {
     return <Loginform />;
   }
@@ -21,16 +21,20 @@ function App() {
     <div className="">
       <div className="main-content">
         <Router>
+        
+  
           <Nav />
 
           <div className="main-wrapper">
             <Searchbar />
             <Routes>
+
               <Route path="/" element={<Dashboard />} />
               <Route path="/players" element={<Players />} />
               <Route path="/teams" element={<Teams />} />
               <Route path="/auctioncontrol" element={<AuctionScreen />} />
               <Route path="/form" element={<Form />} />
+  
             </Routes>
           </div>
         </Router>

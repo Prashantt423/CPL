@@ -1,4 +1,5 @@
 const express = require('express');
+const cors = require ('cors')
 const morgan = require('morgan');
 const cookieParser = require('cookie-parser');
 const rateLimit = require('express-rate-limit');
@@ -7,6 +8,7 @@ const teamRouter = require('./routes/team-routes');
 const playerRouter = require('./routes/player-routes');
 
 const app = express();
+app.use(cors());
 
 app.use(morgan('dev'));
 
