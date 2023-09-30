@@ -2,40 +2,35 @@ import { React, useEffect, useState } from "react";
 import "./login.css";
 import logo from "../Assets/Images/logo/logo.png";
 import authService from "../../Services/auth.service";
-import {useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 
 
-const Loginform = ({flag}) => {
+const Loginform = ({ flag }) => {
   const [dropDown, setDropDown] = useState("Admin");
   const [checkDropDown, setCheckDropdown] = useState("Knights");
   const [password, setPassword] = useState("");
   const [email, setEmail] = useState("");
   const navigate = useNavigate();
 
-  const handleLogin  = async (e) =>{
-      e.preventDefault();
-      try{
-        await authService.logIn(email , password).then(
-          () =>{
-            navigate("/" , {replace: true})
-            flag(false)
-            
-          }, (error) => {
-            console.log(error)
-          }
+  const handleLogin = async (e) => {
+    e.preventDefault();
+    try {
+      await authService.logIn(email, password).then(
+        () => {
+          navigate("/", { replace: true })
+          flag(false)
 
-        );
-      } catch(err){
-        console.log(err)
-      }
+        }, (error) => {
+          console.log(error)
+        }
+
+      );
+    } catch (err) {
+      console.log(err)
     }
-  
-      
-      
-    
-
-
+  }
   let content;
   if (dropDown === "Team") {
     content = (
@@ -81,13 +76,14 @@ const Loginform = ({flag}) => {
             </select>
             <input type="text" name="email" id="email" placeholder="Email" onChange={(e) => {
               setEmail(e.target.value)
-            }}/>
-            <input type="password" name="password" placeholder="Password"  onChange={(e) =>{
+            }} />
+            <input type="password" name="password" placeholder="Password" onChange={(e) => {
               setPassword(e.target.value)
-            }}/>
+            }} />
 
             <button className="logo" >LogIn</button>
             
+
           </form>
         </div>
       </div>

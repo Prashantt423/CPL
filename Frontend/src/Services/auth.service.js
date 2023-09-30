@@ -2,11 +2,14 @@ import axios from "axios";
 const SignUp_URL = "http://localhost:6001/cpl/signup";
 const logIn_URL = "http://localhost:6001/cpl/login";
 
-const signUp = (email, password) => {
-  return axios
-    .post(SignUp_URL, {
+const signUp = (name ,email, password , confirmPassword, role) => {
+  return axios.post(SignUp_URL, {
+      name,
       email,
       password,
+      confirmPassword,
+      role
+      
     })
     .then((response) => {
       if (response.data.token) {

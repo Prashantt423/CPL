@@ -9,6 +9,7 @@ import Searchbar from "./Pages/Seachbar/Searchbar";
 import Form from "./Pages/Players/add player/Form";
 import { useState } from "react";
 import Loginform from "./Pages/Login/Loginform";
+import Signup from "./signup/Signup";
 
 
 function App() {
@@ -34,6 +35,8 @@ function App() {
               <Route path="/teams" element={<Teams />} />
               <Route path="/auctioncontrol" element={<AuctionScreen />} />
               <Route path="/form" element={<Form />} />
+              <Route path="/signup" element={<Signup/>}/>
+    
               
   
             </Routes>

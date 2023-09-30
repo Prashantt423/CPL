@@ -5,6 +5,7 @@ import { faTableColumns } from "@fortawesome/free-solid-svg-icons";
 import { faPeopleGroup } from "@fortawesome/free-solid-svg-icons";
 import { faUser } from "@fortawesome/free-solid-svg-icons";
 import { faMoneyBills } from "@fortawesome/free-solid-svg-icons";
+import { faUserPlus } from "@fortawesome/free-solid-svg-icons";
 
 import { Link } from "react-router-dom";
 
@@ -13,6 +14,7 @@ const Nav = () => {
   const peopeIcon = <FontAwesomeIcon icon={faPeopleGroup} />;
   const teamIcon = <FontAwesomeIcon icon={faUser} />;
   const auctionIcon = <FontAwesomeIcon icon={faMoneyBills} />;
+  const signupIcon = <FontAwesomeIcon icon={faUserPlus}/>
 
   return (
     <div className="navbar">
@@ -39,6 +41,11 @@ const Nav = () => {
             <Link to="/auctioncontrol">
               <span className="nav-icons">{auctionIcon}</span> Auction
             </Link>
+          </li>
+          <li>
+            <Link to="/signup">
+              <span className="nav-icons">{signupIcon}</span>
+              Register User</Link>
           </li>
         </ul>
       </nav>
