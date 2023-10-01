@@ -3,52 +3,92 @@ import "./form.css";
 import axios from "axios";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowUpFromBracket } from "@fortawesome/free-solid-svg-icons";
+import { toast, ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const Form = () => {
   const fileuploadicon = <FontAwesomeIcon icon={faArrowUpFromBracket} />;
 
   const [formData, setFormData] = useState({
-    playername: "",
-    mobilenumber: "",
-    curruntsemester: "sem1",
-    dateofbirth: "",
-    branchname: "software",
-    playerphoto: null,
-    baseprice: "",
-    bidprice: "",
-    previousteam: "Knights",
-    currentteam: "Knights",
-    playertype: "batsman",
-    totalruns: "",
-    innings: "",
-    strikerate: "",
-    averageruns: "",
-    totalwickets: "",
-    economy: "",
+    name: "",
+    phoneNumber: "",
+    currentSemester: "sem1",
+    dateOfBirth: null,
+    branch: "software",
+    image: null,
+    basePrice: "",
+    bidPrice: "",
+    previousTeam: "None",
+    currentTeam: "None",
+    playerType: "batsman",
+    totalRuns: "0",
+    innings: "0",
+    strikeRate: "0",
+    average: "0",
+    totalWickets: "0",
+    economyRate: "0",
   });
 
-  const handleInputChange =(e) =>{
-    const {name , value , type , files} = e.target;
+  const handleInputChange = (e) => {
+    // const {name , value , type , files} = e.target;
+    // setFormData({
+    //   ...formData,
+    //   [name]: type === "file" ? files[0] : value,
+
+    // })
+    const { name, value } = e.target;
+    // console.log(name,value)
     setFormData({
       ...formData,
-      [name]: type === "file" ? files[0] : value,
+      [name]: value,
+    });
+  };
 
-    })
-
-  }
-  const handleSubmit = (e) =>{
+  // FORM SUBMIT
+  const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(formData)
-    const formDataJson = JSON.stringify(formData)
-    axios.post("http://localhost:6001/player/add" , formDataJson, {
-      headers:{
-        "Content-Type" : "application/json"
-      }
-    })
-    .then(result => console.log(result))
-    .catch(err => console.log(err))
-  }
- 
+    const formDataJson = JSON.stringify(formData);
+
+    axios
+      .post("http://localhost:6001/player/add", formDataJson, {
+        headers: {
+          "Content-Type": "application/json",
+        },
+        withCredentials: true,
+      })
+      .then((result) => {
+        console.log(result);
+        toast.success("Player added successfully.");
+        // clear the form
+        let clearForm = {
+          name: "",
+          phoneNumber: "",
+          currentSemester: "sem1",
+          dateOfBirth: "",
+          branch: "software",
+          image: null,
+          basePrice: "",
+          bidPrice: "",
+          previousTeam: "None",
+          currentTeam: "None",
+          playerType: "batsman",
+          totalRuns: "0",
+          innings: "0",
+          strikeRate: "0",
+          average: "0",
+          totalWickets: "0",
+          economyRate: "0",
+        };
+        setFormData(clearForm);
+      })
+      .catch((err) => {
+        let errorMsg = err.response.data.data;
+        console.log(errorMsg);
+        if (errorMsg) {
+          toast.error(errorMsg); // Display an error toast
+        }
+      });
+  };
 
   return (
     <div className="container">
@@ -75,10 +115,11 @@ const Form = () => {
                 <input
                   className="form-inputs"
                   type="text"
-                  name="playername"
+                  name="name"
                   id="playername"
                   placeholder="Enter Name"
-                  value={formData.playername}
+                  value={formData.name}
+                  required
                   onChange={handleInputChange}
                 />
               </div>
@@ -88,10 +129,11 @@ const Form = () => {
                 <input
                   className="form-inputs"
                   type="text"
-                  name="mobilenumber"
+                  name="phoneNumber"
                   id="mobilenumber"
+                  required
                   placeholder="Enter Mobile Number"
-                  value={formData.mobilenumber}
+                  value={formData.phoneNumber}
                   onChange={handleInputChange}
                 />
               </div>
@@ -99,9 +141,9 @@ const Form = () => {
                 <label htmlFor="curruntsemester">Current Semester</label>
 
                 <select
-                  name="curruntsemester"
+                  name="currentSemester"
                   className="dropdown"
-                  value={formData.curruntsemester}
+                  value={formData.currentSemester}
                   onChange={handleInputChange}
                 >
                   <option value="sem1">Semester 1</option>
@@ -119,9 +161,10 @@ const Form = () => {
                 <input
                   className="form-inputs"
                   type="date"
-                  name="dateofbirth"
+                  name="dateOfBirth"
                   id="DOB"
-                  value={formData.dateofbirth}
+                  required
+                  value={formData.dateOfBirth}
                   onChange={handleInputChange}
                 />
               </div>
@@ -131,7 +174,7 @@ const Form = () => {
                 <select
                   name="branch"
                   className="dropdown"
-                  value={formData.branchname}
+                  value={formData.branch}
                   onChange={handleInputChange}
                 >
                   <option value="software">Software</option>
@@ -148,10 +191,11 @@ const Form = () => {
                 </label>
                 <input
                   className="form-inputs"
-                  name="playerphoto"
+                  name="image"
                   type="file"
                   id="playerphoto"
-                  // value={formData.playerphoto}
+                  required
+                  value={formData.image}
                   onChange={handleInputChange}
                 />
               </div>
@@ -170,10 +214,11 @@ const Form = () => {
                   className="form-inputs"
                   type="number"
                   min={0}
-                  name="baseprice"
+                  name="basePrice"
                   id="baseprice"
+                  required
                   placeholder="Base price"
-                  value={formData.baseprice}
+                  value={formData.basePrice}
                   onChange={handleInputChange}
                 />
               </div>
@@ -184,10 +229,11 @@ const Form = () => {
                   className="form-inputs"
                   type="number"
                   min={0}
-                  name="bidprice"
+                  name="bidPrice"
                   id="bidprice"
+                  required
                   placeholder="Bid price"
-                  value={formData.bidprice}
+                  value={formData.bidPrice}
                   onChange={handleInputChange}
                 />
               </div>
@@ -195,11 +241,12 @@ const Form = () => {
                 <label htmlFor="previousteam">Previous Team</label>
 
                 <select
-                  name="previousteam"
+                  name="previousTeam"
                   className="dropdown"
-                  value={formData.curruntsempreviousteamester}
+                  value={formData.previousTeam}
                   onChange={handleInputChange}
                 >
+                  <option value="None">None</option>
                   <option value="Knights">Knights</option>
                   <option value="Hurricanes">Hurricanes</option>
                   <option value="Royals">Royals</option>
@@ -217,11 +264,12 @@ const Form = () => {
                 <label htmlFor="currentteam">Current Team</label>
 
                 <select
-                  name="currentteam"
+                  name="currentTeam"
                   className="dropdown"
-                  value={formData.currentteam}
+                  value={formData.currentTeam}
                   onChange={handleInputChange}
                 >
+                  <option value="None">None</option>
                   <option value="Knights">Knights</option>
                   <option value="Hurricanes">Hurricanes</option>
                   <option value="Royals">Royals</option>
@@ -240,14 +288,15 @@ const Form = () => {
                 <label htmlFor="playertype">Player Type</label>
 
                 <select
-                  name="playertype"
+                  name="playerType"
                   className="dropdown"
-                  value={formData.playertype}
+                  value={formData.playerType}
                   onChange={handleInputChange}
                 >
                   <option value="batsman">Batsman</option>
                   <option value="bolwer">Bowler</option>
                   <option value="allrounder">All Rounder</option>
+                  <option value="wicketKeeper">Wicket keeper</option>
                 </select>
               </div>
             </div>
@@ -266,10 +315,10 @@ const Form = () => {
                   className="form-inputs"
                   type="number"
                   min={0}
-                  name="totalruns"
+                  name="totalRuns"
                   id="totalruns"
                   placeholder="Total Runs"
-                  value={formData.totalruns}
+                  value={formData.totalRuns}
                   onChange={handleInputChange}
                 />
               </div>
@@ -294,10 +343,10 @@ const Form = () => {
                   className="form-inputs"
                   type="number"
                   min={0}
-                  name="strikerate"
+                  name="strikeRate"
                   id="strikerate"
                   placeholder="strikerate"
-                  value={formData.strikerate}
+                  value={formData.strikeRate}
                   onChange={handleInputChange}
                 />
               </div>
@@ -311,7 +360,7 @@ const Form = () => {
                   name="average"
                   id="average"
                   placeholder="average"
-                  value={formData.averageruns}
+                  value={formData.average}
                   onChange={handleInputChange}
                 />
               </div>
@@ -322,10 +371,10 @@ const Form = () => {
                   className="form-inputs"
                   type="number"
                   min={0}
-                  name="totalwickets"
+                  name="totalWickets"
                   id="totalwickets"
                   placeholder="totalwickets"
-                  value={formData.totalwickets}
+                  value={formData.totalWickets}
                   onChange={handleInputChange}
                 />
               </div>
@@ -338,10 +387,10 @@ const Form = () => {
                   className="form-inputs"
                   type="number"
                   min={0}
-                  name="eco"
+                  name="economyRate"
                   id="eco"
                   placeholder="Economy"
-                  value={formData.economy}
+                  value={formData.economyRate}
                   onChange={handleInputChange}
                 />
               </div>
@@ -349,6 +398,7 @@ const Form = () => {
           </div>
         </fieldset>
       </form>
+      <ToastContainer position="top-center" autoClose={3000} />
     </div>
   );
 };

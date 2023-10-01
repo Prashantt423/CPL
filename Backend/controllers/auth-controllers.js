@@ -40,7 +40,6 @@ exports.registerUser = catchAsync(async (req, res) => {
 
 
 exports.loginUser = catchAsync(async (req, res) => {
-    console.log(1223);
     const { error, value } = validator.userLoginSchemaValidation.validate(req.body);
     if (error) {
         return res.status(400).json({
@@ -62,17 +61,18 @@ exports.loginUser = catchAsync(async (req, res) => {
     const isAuthenticated = await bcrypt.compare(value.password, user.password);
     if (isAuthenticated) {
         const token = jwt.sign({ user: user.id, role: user.role }, process.env.SECRET, { expiresIn: '1h' });
-
+        console.log('JWT token generated:', token);
+        console.log('Setting cookie...');
         res.cookie('token', token, {
             httpOnly: true,
-            maxAge: 60 * 60 * 1000, // Cookie expire in 1 hour
-            sameSite: 'strict'
+            maxAge: 60 * 60 * 1000,
+            // sameSite: 'strict'
         });
+        console.log('Cookie set.'); 
         return sendResponse(res, 200, 'User login successfully', { token });
 
     } else {
-        return (new AppError('Invalid password', 401));
-
+        return next(new AppError('Invalid password', 401));
     }
 
 });
@@ -80,7 +80,7 @@ exports.loginUser = catchAsync(async (req, res) => {
 
 exports.isLoggedIn = async (req, res, next) => {
     const token = req.cookies.token;
-
+    console.log("is login",token,req.cookie,req.cookies)
     if (token) {
         try {
             const decoded = await promisify(jwt.verify)(token, process.env.SECRET);
@@ -94,7 +94,7 @@ exports.isLoggedIn = async (req, res, next) => {
             return next(new AppError('Invalid token', 401));
         }
     }
-    return next(new AppError('something'));
+    return next(new AppError('You are not authorized to perform this action', 401));
 };
 
 exports.restrictTo = (...roles) => {

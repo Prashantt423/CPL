@@ -10,6 +10,8 @@ const signUp = (name ,email, password , confirmPassword, role) => {
       confirmPassword,
       role
       
+    }, {
+      withCredentials: true,
     })
     .then((response) => {
       if (response.data.token) {
@@ -24,15 +26,17 @@ const logIn = (email, password) => {
     .post(logIn_URL, {
       email,
       password,
+    }, {
+      withCredentials: true,
     })
     .then((response) => {
-      console.log(123);
       if (response.data.token) {
         localStorage.setItem("user", JSON.stringify(response.data));
       }
       return response.data;
     });
 };
+
 
 const logOut =  () =>{
     localStorage.removeItem('user');

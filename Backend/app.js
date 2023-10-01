@@ -8,7 +8,11 @@ const teamRouter = require('./routes/team-routes');
 const playerRouter = require('./routes/player-routes');
 
 const app = express();
-app.use(cors());
+
+app.use(cors({
+    origin: 'http://localhost:3000',
+    credentials: true, 
+}));
 
 app.use(morgan('dev'));
 
