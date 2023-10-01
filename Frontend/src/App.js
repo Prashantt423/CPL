@@ -2,6 +2,8 @@ import Dashboard from "./Pages/Dashboard/Dashboard";
 import Players from "./Pages/Players/Players";
 import Teams from "./Pages/Teams/Teams";
 import Nav from "./Pages/Nav/Nav";
+import authService from "./Services/auth.service";
+import { useEffect } from "react";
 import AuctionScreen from "./Pages/Auction/AuctionControl/Auction";
 import { BrowserRouter as Router } from "react-router-dom";
 import { Routes, Route } from "react-router-dom";
@@ -13,10 +15,23 @@ import Signup from "./signup/Signup";
 
 
 function App() {
+  const login = window.localStorage.getItem("isLoggedIn")
   const [loginFlag, setloginFlag] = useState(true);
-  if (loginFlag) {
-    return <Loginform flag={setloginFlag} />;
-  }
+
+  useEffect(() => {
+    const isLoggedIn = window.localStorage.getItem("isLoggedIn")
+    setloginFlag(!!isLoggedIn)
+  }, [])
+
+  const content = loginFlag ? <Dashboard/> : <Loginform flag={setloginFlag}/>
+  // if(loginFlag === true){
+  //   return(
+  //     <Loginform flag={setloginFlag} />
+  // )
+
+  // }
+
+  
 
   return (
     <div className="">
@@ -36,6 +51,7 @@ function App() {
               <Route path="/auctioncontrol" element={<AuctionScreen />} />
               <Route path="/form" element={<Form />} />
               <Route path="/signup" element={<Signup/>}/>
+              <Route path="/login" element={<Loginform/>}></Route>
     
               
   

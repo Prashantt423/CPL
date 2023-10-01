@@ -16,6 +16,7 @@ const Loginform = ({ flag }) => {
 
   const handleLogin = async (e) => {
     e.preventDefault();
+    window.localStorage.setItem("isLoggedIn" , true)
     try {
       await authService.logIn(email, password).then(
         () => {
@@ -31,6 +32,7 @@ const Loginform = ({ flag }) => {
       console.log(err)
     }
   }
+  
   let content;
   if (dropDown === "Team") {
     content = (

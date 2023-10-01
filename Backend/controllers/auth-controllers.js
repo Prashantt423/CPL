@@ -51,7 +51,7 @@ exports.loginUser = catchAsync(async (req, res) => {
     const user = await User.findOne({ email: value.email });
 
     if (!user) {
-        return next(new AppError('User not found', 404));
+        return (new AppError('User not found', 404));
 
     }
     if (user.status === 'banned') {
