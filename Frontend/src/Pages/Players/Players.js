@@ -3,15 +3,36 @@ import "./Players.css";
 import { Link } from "react-router-dom";
 import { useEffect } from "react";
 import axios from "axios";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faPencilAlt } from "@fortawesome/free-solid-svg-icons";
+import { faTrash } from "@fortawesome/free-solid-svg-icons";
+import batterlogo from "../Assets/Images/player_type_icons/batter.png";
+import bowlerlogo from "../Assets/Images/player_type_icons/bowler.png";
+import allrounderlogo from "../Assets/Images/player_type_icons/All_rounder.png";
 
 const Players = () => {
+  const editIcon = <FontAwesomeIcon icon={faPencilAlt} />;
+  const deleteIcon = <FontAwesomeIcon icon={faTrash} />;
+
+  function playerTypeicon(type) {
+    if (type === "allrounder") {
+      return allrounderlogo;
+    }
+    if (type === "batsman") {
+      return batterlogo;
+    }
+    if (type === "bowler") {
+      return bowlerlogo;
+    }
+  }
+
   const [data, setData] = useState([]);
   useEffect(() => {
     axios
-      .get("http://localhost:6001/player/")
+      .get("http://localhost:6001/player/", { withCredentials: true })
       .then((response) => {
-        console.log("Player data:", response.data);
-        setData(response.data);
+        console.log("Player data:", response.data.data);
+        setData(response.data.data);
       })
       .catch((err) => console.log("Error fetching player data:", err));
   }, []);
@@ -34,11 +55,13 @@ const Players = () => {
           <thead>
             <tr>
               <th>Name</th>
+              <th>Semeter</th>
               <th>Type</th>
               <th>Purchase Price</th>
               <th>Average</th>
               <th>SR</th>
               <th>ECO</th>
+              <th>Actions</th>
             </tr>
           </thead>
           <tbody>
@@ -48,11 +71,25 @@ const Players = () => {
                 return (
                   <tr key={player._id}>
                     <td>{player.name}</td>
-                    <td>{player.playerType}</td>
-                    <td>{player.basePrice}</td>
+                    <td>{player.currentSemester}</td>
+                    <td>
+                      <img
+                        style={{
+                          height:
+                            player.playerType === "bowler" ? "15px" : "20px",
+                        }}
+                        src={playerTypeicon(player.playerType)}
+                        alt="current player logo"
+                      />
+                    </td>
+                    <td>{player.bidPrice}</td>
                     <td>{player.average}</td>
                     <td>{player.strikeRate}</td>
                     <td>{player.economyRate}</td>
+                    <td>
+                      <span className="nav-icons">{editIcon}</span>
+                      <span className="nav-icons">{deleteIcon}</span>
+                    </td>
                   </tr>
                 );
               })}
