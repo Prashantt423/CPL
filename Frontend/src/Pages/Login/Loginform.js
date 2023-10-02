@@ -4,34 +4,44 @@ import logo from "../Assets/Images/logo/logo.png";
 import authService from "../../Services/auth.service";
 import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
+import Dashboard from "../Dashboard/Dashboard";
 
 
 
 const Loginform = ({ flag }) => {
+  const [user , setUser] = useState()
   const [dropDown, setDropDown] = useState("Admin");
   const [checkDropDown, setCheckDropdown] = useState("Knights");
   const [password, setPassword] = useState("");
   const [email, setEmail] = useState("");
   const navigate = useNavigate();
 
+  useEffect(() => {
+    const getUser = authService.getCurruntUser()
+    if(getUser){
+      navigate("/", {replace : true})
+    }
+
+  } , [])
+
+
   const handleLogin = async (e) => {
     e.preventDefault();
-    window.localStorage.setItem("isLoggedIn" , true)
+
     try {
-      await authService.logIn(email, password).then(
-        () => {
-          navigate("/", { replace: true })
-          flag(false)
+      const response = await authService.logIn(email, password);
 
-        }, (error) => {
-          console.log(error)
-        }
+      localStorage.setItem("user", JSON.stringify(response.data));
 
-      );
-    } catch (err) {
-      console.log(err)
+      navigate("/", { replace: true });
+      flag(false);
+    } catch (error) {
+      console.log(error);
     }
-  }
+  };
+  
+
+
   
   let content;
   if (dropDown === "Team") {
@@ -94,3 +104,4 @@ const Loginform = ({ flag }) => {
 };
 
 export default Loginform;
+

@@ -84,7 +84,7 @@ exports.isLoggedIn = async (req, res, next) => {
     if (token) {
         try {
             const decoded = await promisify(jwt.verify)(token, process.env.SECRET);
-            const currentUser = await User.find({ id: decoded.user });
+            const currentUser = await User.findById({ id: decoded.user });
             if (!currentUser) {
                 return next(new AppError('User not found', 404));
             }

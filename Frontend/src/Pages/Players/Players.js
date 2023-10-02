@@ -1,7 +1,21 @@
+import { useState } from "react";
 import "./Players.css";
 import { Link } from "react-router-dom";
+import { useEffect } from "react";
+import axios from "axios";
 
 const Players = () => {
+  const [data, setData] = useState([]);
+  useEffect(() => {
+    axios
+      .get("http://localhost:6001/player/")
+      .then((response) => {
+        console.log("Player data:", response.data);
+        setData(response.data);
+      })
+      .catch((err) => console.log("Error fetching player data:", err));
+  }, []);
+
   return (
     <div className="card">
       <div className="header">
@@ -28,15 +42,21 @@ const Players = () => {
             </tr>
           </thead>
           <tbody>
-            <tr>
-              <td>John Smith</td>
-              <td>Batsman</td>
-              <td>500,000 USD</td>
-              <td>45.67</td>
-              <td>120.45</td>
-              <td>4.78</td>
-            </tr>
-            <tr>
+            {data &&
+              data.length > 0 &&
+              data.map((player) => {
+                return (
+                  <tr key={player._id}>
+                    <td>{player.name}</td>
+                    <td>{player.playerType}</td>
+                    <td>{player.basePrice}</td>
+                    <td>{player.average}</td>
+                    <td>{player.strikeRate}</td>
+                    <td>{player.economyRate}</td>
+                  </tr>
+                );
+              })}
+            {/* <tr>
               <td>Michael Davis</td>
               <td>Bowler</td>
               <td>350,000 USD</td>
@@ -107,7 +127,7 @@ const Players = () => {
               <td>26.89</td>
               <td>98.34</td>
               <td>5.12</td>
-            </tr>
+            </tr> */}
           </tbody>
         </table>
       </div>
