@@ -2,3 +2,41 @@
     display: flex;
     justify-content: center;
 }
+
+.users-table tr {
+    border-bottom: 1px solid rgb(236, 235, 235);
+}
+
+.users-table th {
+    font-size: 1vw;
+    font-weight: 600;
+    padding: 10px;
+    text-align: center;
+    border: none;
+    background-color: #ECECEC;
+}
+
+.users-table td {
+    font-size: 1vw;
+    color: #3F4249;
+    text-align: left;
+    padding: 1vw 2vw;
+        border: none;
+        font-size: .9em;
+}
+
+
+
+.users-table .active-pill{
+    color:green;
+    border: 1px solid green;
+    padding: 7px;
+    border-radius: 5px;
+}
+.users-table .banned-pill{
+    color:rgb(180, 0, 0);
+    border: 1px solid rgb(180, 0, 0);
+        padding: 7px;
+        border-radius: 5px;
+}
+

@@ -81,6 +81,12 @@ exports.loginUser = catchAsync(async (req, res) => {
   }
 });
 
+// List All Players
+exports.listAllUsers = catchAsync(async (req, res) => {
+  const users = await User.find();
+  return sendResponse(res, 200, "List of all players", users);
+});
+
 exports.isLoggedIn = async (req, res, next) => {
   const token = req.cookies.token;
   console.log("is login", req.cookie);

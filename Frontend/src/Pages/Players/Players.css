@@ -13,7 +13,7 @@
     font-size: 1vw;
     text-decoration: none;
 }
-table {
+.players-table table {
     border-collapse: collapse;
     width: 100%;
     padding-top: 3rem;
@@ -22,29 +22,21 @@ table {
 }
 
 
-th{ 
+.players-table th{ 
     padding: 10px;
-        text-align: left;
+        text-align: center;
         border: none;
         background-color: #ECECEC;
 }
-td {
+.players-table td {
     /* border-bottom: 1px solid #ddd; */
     padding: 10px;
     text-align: left;
     border: none;
     font-size: .9em;
-    
 }
 
-th {
-    /* background-color: #ECECEC; */
-    text-align: center;
-}
 
-td:nth-child(1),th:nth-child(1){
-    text-align: left;
-}
 
 
 /* Style the "Average," "SR," and "ECO" columns as numbers */

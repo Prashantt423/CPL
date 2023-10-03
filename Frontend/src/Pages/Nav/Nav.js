@@ -11,17 +11,12 @@ import { useNavigate } from "react-router-dom";
 import Loginform from "../Login/Loginform";
 import { Link } from "react-router-dom";
 
-
 const Nav = () => {
-  
-
-
-
   const dashIcon = <FontAwesomeIcon icon={faTableColumns} />;
   const peopeIcon = <FontAwesomeIcon icon={faPeopleGroup} />;
   const teamIcon = <FontAwesomeIcon icon={faUser} />;
   const auctionIcon = <FontAwesomeIcon icon={faMoneyBills} />;
-  const signupIcon = <FontAwesomeIcon icon={faUserPlus}/>
+  const signupIcon = <FontAwesomeIcon icon={faUserPlus} />;
 
   return (
     <div className="navbar">
@@ -52,7 +47,8 @@ const Nav = () => {
           <li>
             <Link to="/signup">
               <span className="nav-icons">{signupIcon}</span>
-              Register User</Link>
+              Admin Users
+            </Link>
           </li>
         </ul>
       </nav>

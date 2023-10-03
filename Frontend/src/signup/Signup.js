@@ -1,10 +1,29 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import "./signup.css";
 import authService from "../Services/auth.service";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import axios from "axios";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faPencilAlt } from "@fortawesome/free-solid-svg-icons";
+import { faTrash } from "@fortawesome/free-solid-svg-icons";
 
 const Signup = () => {
+  const editIcon = <FontAwesomeIcon icon={faPencilAlt} />;
+  const deleteIcon = <FontAwesomeIcon icon={faTrash} />;
+
+  const [data, setData] = useState([]);
+
+  useEffect(() => {
+    axios
+      .get("http://localhost:6001/cpl/users", { withCredentials: true })
+      .then((response) => {
+        console.log("users data:", response.data.data);
+        setData(response.data.data);
+      })
+      .catch((err) => console.log("Error fetching users data:", err));
+  }, []);
+
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -71,9 +90,52 @@ const Signup = () => {
       className="container register-form"
       style={{
         display: "flex",
-        justifyContent: "center",
+        justifyContent: "space-around",
       }}
     >
+      <div>
+        <h1>Users</h1>
+        <div className="table-wrapper users-table">
+          <table>
+            <thead>
+              <tr>
+                <th>Name</th>
+                <th>Email</th>
+                <th>State</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody>
+              {data &&
+                data.length > 0 &&
+                data.map((team) => {
+                  return (
+                    <tr key={team._id}>
+                      <td>{team.name}</td>
+                      <td>{team.email}</td>
+                      <td>
+                        <span
+                          className={
+                            team.status === "active"
+                              ? "active-pill"
+                              : "banned-pill"
+                          }
+                        >
+                          {team.status}
+                        </span>
+                      </td>
+
+                      <td>
+                        <span className="nav-icons">{editIcon}</span>
+                        <span className="nav-icons">{deleteIcon}</span>
+                      </td>
+                    </tr>
+                  );
+                })}
+            </tbody>
+          </table>
+        </div>
+      </div>
       <form onSubmit={submitHandler}>
         {/* Add new user */}
         <fieldset style={{ backgroundColor: "#D1E8FF", width: "30vw" }}>

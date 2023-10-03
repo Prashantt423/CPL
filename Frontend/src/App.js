@@ -13,18 +13,11 @@ import { useState } from "react";
 import Loginform from "./Pages/Login/Loginform";
 import Signup from "./signup/Signup";
 
-
-
 function App() {
-  
   const [loginFlag, setloginFlag] = useState(true);
 
-  if(loginFlag === true){
-    return(
-      <Loginform flag={setloginFlag} />
-  )
-  
-
+  if (loginFlag === true) {
+    return <Loginform flag={setloginFlag} />;
   }
 
   return (
