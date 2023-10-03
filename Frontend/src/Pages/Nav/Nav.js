@@ -10,6 +10,7 @@ import { faUserPlus } from "@fortawesome/free-solid-svg-icons";
 import { useNavigate } from "react-router-dom";
 import Loginform from "../Login/Loginform";
 import { Link } from "react-router-dom";
+import { Navigate } from "react-router-dom";
 
 const Nav = () => {
   const dashIcon = <FontAwesomeIcon icon={faTableColumns} />;
@@ -17,6 +18,13 @@ const Nav = () => {
   const teamIcon = <FontAwesomeIcon icon={faUser} />;
   const auctionIcon = <FontAwesomeIcon icon={faMoneyBills} />;
   const signupIcon = <FontAwesomeIcon icon={faUserPlus} />;
+
+  let logout = () => {
+    console.log("logout");
+    localStorage.removeItem("token");
+    console.log("cookie removed");
+    <Navigate to="/" />;
+  };
 
   return (
     <div className="navbar">
@@ -49,6 +57,9 @@ const Nav = () => {
               <span className="nav-icons">{signupIcon}</span>
               Admin Users
             </Link>
+          </li>
+          <li>
+            <button onClick={logout}>Logout</button>
           </li>
         </ul>
       </nav>

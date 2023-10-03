@@ -1,3 +1,5 @@
+import { Navigate } from "react-router-dom";
+
 // import axios from "axios";
 // const SignUp_URL = "http://localhost:6001/cpl/signup";
 // const logIn_URL = "http://localhost:6001/cpl/login";
@@ -104,11 +106,13 @@ const logIn = (email, password) => {
 };
 
 const logOut = () => {
-  localStorage.removeItem("user");
+  
+  localStorage.removeItem("token");
+  <Navigate to="/" />;
 };
 
 const getCurruntUser = () => {
-  return JSON.parse(localStorage.getItem("user"));
+  return JSON.parse(localStorage.getItem("token"));
 };
 
 const authService = {
