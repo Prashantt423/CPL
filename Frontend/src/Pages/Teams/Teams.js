@@ -1,11 +1,25 @@
 import "./teams.css";
 
+import axios from "axios";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-
-import { faPencil } from "@fortawesome/free-solid-svg-icons";
+import { faPencilAlt } from "@fortawesome/free-solid-svg-icons";
+import { faTrash } from "@fortawesome/free-solid-svg-icons";
+import { useEffect, useState } from "react";
 
 const Teams = () => {
-  const auctionIcon = <FontAwesomeIcon icon={faPencil} />;
+  const editIcon = <FontAwesomeIcon icon={faPencilAlt} />;
+  const deleteIcon = <FontAwesomeIcon icon={faTrash} />;
+
+  const [data, setData] = useState([]);
+  useEffect(() => {
+    axios
+      .get("http://localhost:6001/team/", { withCredentials: true })
+      .then((response) => {
+        console.log("Team data:", response.data.data);
+        setData(response.data.data);
+      })
+      .catch((err) => console.log("Error fetching teams data:", err));
+  }, []);
 
   return (
     <div className="card">
@@ -26,66 +40,25 @@ const Teams = () => {
             </tr>
           </thead>
           <tbody>
-            <tr>
-              <td>KNIGHTS</td>
-              <td>04</td>
-              <td>34,000</td>
-              <td>Mr John mori</td>
-              <td>1</td>
-              <td>3</td>
-              <td>0</td>
-              <td>
-                <span className="nav-icons">{auctionIcon}</span>
-              </td>
-            </tr>
-            <tr>
-              <td>HURRICANES</td>
-              <td>06</td>
-              <td>35,000</td>
-              <td>Peter parker</td>
-              <td>3</td>
-              <td>1</td>
-              <td>2</td>
-              <td>
-                <span className="nav-icons">{auctionIcon}</span>
-              </td>
-            </tr>
-            <tr>
-              <td>ROYALS</td>
-              <td>04</td>
-              <td>12,000</td>
-              <td>Tony Stark</td>
-              <td>1</td>
-              <td>2</td>
-              <td>1</td>
-              <td>
-                <span className="nav-icons">{auctionIcon}</span>
-              </td>
-            </tr>
-            <tr>
-              <td>BLASTERS</td>
-              <td>12</td>
-              <td>1,000 </td>
-              <td>Ralph raider</td>
-              <td>7</td>
-              <td>3</td>
-              <td>2</td>
-              <td>
-                <span className="nav-icons">{auctionIcon}</span>
-              </td>
-            </tr>
-            <tr>
-              <td>STARS</td>
-              <td>11</td>
-              <td>3,500</td>
-              <td>Jon Snow</td>
-              <td>6</td>
-              <td>5</td>
-              <td>1</td>
-              <td>
-                <span className="nav-icons">{auctionIcon}</span>
-              </td>
-            </tr>
+            {data &&
+              data.length > 0 &&
+              data.map((team) => {
+                return (
+                  <tr key={team._id}>
+                    <td>{team.name}</td>
+                    <td>{team.totalPlayer}</td>
+                    <td>{team.bidPointBalance}</td>
+                    <td>{team.captain}</td>
+                    <td>{team.average}</td>
+                    <td>{team.strikeRate}</td>
+                    <td>{team.economyRate}</td>
+                    <td>
+                      <span className="nav-icons">{editIcon}</span>
+                      <span className="nav-icons">{deleteIcon}</span>
+                    </td>
+                  </tr>
+                );
+              })}
           </tbody>
         </table>
       </div>
