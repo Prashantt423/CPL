@@ -145,7 +145,7 @@ const Dashboard = () => {
           </div>
         </div>
 
-        <div className="players-table table">
+        <div className="dashboard-players-table table">
           <div className="table-head">
             <p className="table-head">Players</p>
             <Link to="/players">

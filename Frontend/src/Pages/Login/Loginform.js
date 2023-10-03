@@ -6,10 +6,8 @@ import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
 import Dashboard from "../Dashboard/Dashboard";
 
-
-
 const Loginform = ({ flag }) => {
-  const [user , setUser] = useState()
+  const [user, setUser] = useState();
   const [dropDown, setDropDown] = useState("Admin");
   const [checkDropDown, setCheckDropdown] = useState("Knights");
   const [password, setPassword] = useState("");
@@ -17,13 +15,11 @@ const Loginform = ({ flag }) => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    const getUser = authService.getCurruntUser()
-    if(getUser){
-      navigate("/", {replace : true})
+    const getUser = authService.getCurruntUser();
+    if (getUser) {
+      navigate("/", { replace: true });
     }
-
-  } , [])
-
+  }, []);
 
   const handleLogin = async (e) => {
     e.preventDefault();
@@ -39,10 +35,7 @@ const Loginform = ({ flag }) => {
       console.log(error);
     }
   };
-  
 
-
-  
   let content;
   if (dropDown === "Team") {
     content = (
@@ -69,7 +62,7 @@ const Loginform = ({ flag }) => {
     );
   }
   return (
-    <div className="background">
+    <div className="background login-form-wrapper">
       <div className="child child-position">
         <img src={logo} alt="CPL logo" />
         <div className="content">
@@ -86,16 +79,25 @@ const Loginform = ({ flag }) => {
               <option value="admin">Administrator</option>
               <option value="team">Team</option>
             </select>
-            <input type="text" name="email" id="email" placeholder="Email" onChange={(e) => {
-              setEmail(e.target.value)
-            }} />
-            <input type="password" name="password" placeholder="Password" onChange={(e) => {
-              setPassword(e.target.value)
-            }} />
+            <input
+              type="text"
+              name="email"
+              id="email"
+              placeholder="Email"
+              onChange={(e) => {
+                setEmail(e.target.value);
+              }}
+            />
+            <input
+              type="password"
+              name="password"
+              placeholder="Password"
+              onChange={(e) => {
+                setPassword(e.target.value);
+              }}
+            />
 
-            <button className="logo" >LogIn</button>
-            
-
+            <button className="logo">LogIn</button>
           </form>
         </div>
       </div>
@@ -104,4 +106,3 @@ const Loginform = ({ flag }) => {
 };
 
 export default Loginform;
-

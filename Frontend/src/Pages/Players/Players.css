@@ -5,11 +5,12 @@
    
 }
 .add-player{
-    padding: 10px 30px;
+    padding: 5px 20px;
     color: #fff;
     background-color: rgb(43, 42, 42);
     border-radius: 10px;
     cursor: pointer;
+    font-size: 1vw;
     text-decoration: none;
 }
 table {
@@ -25,6 +26,7 @@ th{
     padding: 10px;
         text-align: left;
         border: none;
+        background-color: #ECECEC;
 }
 td {
     /* border-bottom: 1px solid #ddd; */
@@ -52,5 +54,19 @@ td:nth-child(3),
 td:nth-child(4),
 td:nth-child(5),
 td:nth-child(6) {
+    text-align: center;
+}
+
+.players-table tr{
+    border-bottom: 1px solid rgb(236, 235, 235);
+}
+
+.players-table th {
+    font-size: 1vw;
+    font-weight: 600;
+}
+.players-table td {
+    font-size: 1vw;
+    color:#3F4249;
     text-align: center;
 }

@@ -12,7 +12,7 @@ const Form = () => {
   const [formData, setFormData] = useState({
     name: "",
     phoneNumber: "",
-    currentSemester: "sem1",
+    currentSemester: "1",
     dateOfBirth: null,
     branch: "software",
     image: null,
@@ -69,7 +69,7 @@ const Form = () => {
         let clearForm = {
           name: "",
           phoneNumber: "",
-          currentSemester: "sem1",
+          currentSemester: "1",
           dateOfBirth: null,
           branch: "software",
           image: null,
@@ -103,7 +103,7 @@ const Form = () => {
   };
 
   return (
-    <div className="container">
+    <div className="container add-player-form">
       <form onSubmit={handleSubmit}>
         <div className="header">
           <div>
@@ -158,11 +158,11 @@ const Form = () => {
                   value={formData.currentSemester}
                   onChange={handleInputChange}
                 >
-                  <option value="sem1">Semester 1</option>
-                  <option value="sem3">Semester 3</option>
-                  <option value="sem5">Semester 5</option>
-                  <option value="sem5">Semester 7</option>
-                  <option value="sem5">Semester 9</option>
+                  <option value="1">Semester 1</option>
+                  <option value="3">Semester 3</option>
+                  <option value="5">Semester 5</option>
+                  <option value="7">Semester 7</option>
+                  <option value="9">Semester 9</option>
                 </select>
               </div>
             </div>

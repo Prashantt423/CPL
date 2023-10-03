@@ -62,7 +62,7 @@
     text-align: center;
 }
 
-img {
+.login-form-wrapper img {
     display: block;
     margin-left: 40%;
     margin-top: 2vw;
