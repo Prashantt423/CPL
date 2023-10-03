@@ -1,23 +1,23 @@
+import { useEffect, useState } from "react";
+import { Routes, Route, Navigate } from "react-router-dom";
+import authService from "./Services/auth.service";
+import Nav from "./Pages/Nav/Nav";
+import Searchbar from "./Pages/Seachbar/Searchbar";
 import Dashboard from "./Pages/Dashboard/Dashboard";
 import Players from "./Pages/Players/Players";
 import Teams from "./Pages/Teams/Teams";
-import Nav from "./Pages/Nav/Nav";
-import authService from "./Services/auth.service";
-import { useEffect } from "react";
 import AuctionScreen from "./Pages/Auction/AuctionControl/Auction";
-import { Navigate, BrowserRouter as Router } from "react-router-dom";
-import { Routes, Route } from "react-router-dom";
-import Searchbar from "./Pages/Seachbar/Searchbar";
 import Form from "./Pages/Players/add player/Form";
-import { useState } from "react";
 import Loginform from "./Pages/Login/Loginform";
 import Signup from "./signup/Signup";
 
 function App() {
-  const [loginFlag, setloginFlag] = useState(true);
+  const [token, setToken] = useState(localStorage.getItem("token"));
+  const [loginFlag, setLoginFlag] = useState(!token);
 
-  if (loginFlag === true) {
-    return <Loginform flag={setloginFlag} />;
+  if (loginFlag) {
+    // If not logged in, show the Loginform
+    return <Loginform flag={setLoginFlag} />;
   }
 
   return (
@@ -34,7 +34,8 @@ function App() {
             <Route path="/auctioncontrol" element={<AuctionScreen />} />
             <Route path="/form" element={<Form />} />
             <Route path="/signup" element={<Signup />} />
-            <Route path="/login" element={<Loginform />}></Route>
+            {/* Default redirect for unknown routes */}
+            <Route path="*" element={<Navigate to="/" />} />
           </Routes>
         </div>
       </div>
