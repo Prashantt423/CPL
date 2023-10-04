@@ -90,7 +90,9 @@ const Players = () => {
                     <td>{player.strikeRate}</td>
                     <td>{player.economyRate}</td>
                     <td>
-                     <Link to="/update"> <span className="nav-icons">{editIcon}</span></Link>
+                      <Link to={`/update/${player._id}`}>
+                        <span className="nav-icons">{editIcon}</span>
+                      </Link>
                       <span className="nav-icons">{deleteIcon}</span>
                     </td>
                   </tr>

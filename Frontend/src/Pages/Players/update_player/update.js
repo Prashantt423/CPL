@@ -1,19 +1,15 @@
-import React, { useState } from "react";
-import "./form.css";
-import axios from "axios";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faArrowUpFromBracket } from "@fortawesome/free-solid-svg-icons";
+import { useEffect } from "react";
 import { toast, ToastContainer } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
-
-const Form = () => {
-  const fileuploadicon = <FontAwesomeIcon icon={faArrowUpFromBracket} />;
-
+import { useDebugValue } from "react";
+import { useState } from "react";
+import { useParams } from "react-router-dom";
+import axios from "axios";
+const Update = () => {
   const [formData, setFormData] = useState({
     name: "",
     phoneNumber: "",
     currentSemester: "1",
-    dateOfBirth: null,
+    dateOfBirth: "2000-1-01",
     branch: "software",
     image: null,
     basePrice: "",
@@ -37,11 +33,41 @@ const Form = () => {
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
+
     setFormData({
       ...formData,
       [name]: value,
     });
   };
+
+  const { id } = useParams();
+  console.log("PLAYERS ID : ", id);
+  //for pre filled form
+  useEffect(() => {
+    axios
+      .get("http://localhost:6001/player/" + id, { withCredentials: true })
+      .then((response) => {
+        console.log("data is : DOB ", response.data.data);
+
+        setFormData(response.data.data);
+      })
+      .catch((err) => {
+        console.log("error is ", err); //can not find player by id so handle input will not work
+      });
+    //handnle form
+    const handleInput = () => {
+      axios
+        .put(`http://localhost:6001/player/update/${id}`, formData, {
+          withCredentials: true,
+        })
+        .then((response) => {
+          console.log("data is updated", response.data);
+        })
+        .catch((err) => {
+          console.log("error is", err);
+        });
+    };
+  }, []);
 
   // FORM SUBMIT
   const handleSubmit = (e) => {
@@ -49,7 +75,7 @@ const Form = () => {
     const formDataJson = JSON.stringify(formData);
 
     axios
-      .post("http://localhost:6001/player/add", formDataJson, {
+      .put("http://localhost:6001/player/update/" + id, formDataJson, {
         headers: {
           "Content-Type": "application/json",
         },
@@ -57,34 +83,7 @@ const Form = () => {
       })
       .then((result) => {
         console.log(result);
-        toast.success("Player added successfully.");
-        // clear the form
-        let clearForm = {
-          name: "",
-          phoneNumber: "",
-          currentSemester: "1",
-          dateOfBirth: null,
-          branch: "software",
-          image: null,
-          basePrice: "",
-          bidPrice: "",
-          previousTeam: "None",
-          currentTeam: "None",
-          playerType: "batsman",
-          totalRuns: "0",
-          innings: "0",
-          strikeRate: "0",
-          average: "0",
-          totalWickets: "0",
-          economyRate: "0",
-          battingHand: "None",
-          fours: "0",
-          sixes: "0",
-          bowlingStyle: "None",
-          HighestWicket: "0",
-          overs: "0",
-        };
-        setFormData(clearForm);
+        toast.success("Player Updated successfully.");
       })
       .catch((err) => {
         let errorMsg = err.response.data.data;
@@ -100,11 +99,11 @@ const Form = () => {
       <form onSubmit={handleSubmit}>
         <div className="header">
           <div>
-            <h2>Add Player</h2>
+            <h2>Update Player</h2>
           </div>
           <div className="submit-btn">
             <button className="submit" type="submit">
-              Add
+              Update
             </button>
           </div>
         </div>
@@ -123,8 +122,8 @@ const Form = () => {
                   name="name"
                   id="playername"
                   placeholder="Enter Name"
-                  value={formData.name}
                   required
+                  value={formData.name}
                   onChange={handleInputChange}
                 />
               </div>
@@ -147,6 +146,7 @@ const Form = () => {
 
                 <select
                   name="currentSemester"
+                  id="currentSemester"
                   className="dropdown"
                   value={formData.currentSemester}
                   onChange={handleInputChange}
@@ -169,7 +169,7 @@ const Form = () => {
                   name="dateOfBirth"
                   id="DOB"
                   required
-                  value={formData.dateOfBirth}
+                  value={formData.dateOfBirth.slice(0, 10)}
                   onChange={handleInputChange}
                 />
               </div>
@@ -178,6 +178,7 @@ const Form = () => {
 
                 <select
                   name="branch"
+                  id="branch"
                   className="dropdown"
                   value={formData.branch}
                   onChange={handleInputChange}
@@ -191,7 +192,7 @@ const Form = () => {
               <div>
                 <label>Players Photo</label>
                 <label className="fileupload-lable" htmlFor="playerphoto">
-                  <span className="upload-icon">{fileuploadicon}</span>
+                  {/* <span className="upload-icon">{fileuploadicon}</span> */}
                   Upload image
                 </label>
                 <input
@@ -199,7 +200,8 @@ const Form = () => {
                   name="image"
                   type="file"
                   id="playerphoto"
-                  value={formData.image}
+                  required
+                  // value={formData.image}
                   onChange={handleInputChange}
                 />
               </div>
@@ -246,8 +248,9 @@ const Form = () => {
 
                 <select
                   name="previousTeam"
+                  id="previousTeam"
                   className="dropdown"
-                  value={formData.previousTeam}
+                  value={formData.currentTeam}
                   onChange={handleInputChange}
                 >
                   <option value="None">None</option>
@@ -269,6 +272,7 @@ const Form = () => {
 
                 <select
                   name="currentTeam"
+                  id="currentTeam"
                   className="dropdown"
                   value={formData.currentTeam}
                   onChange={handleInputChange}
@@ -293,6 +297,7 @@ const Form = () => {
 
                 <select
                   name="playerType"
+                  id="playerType"
                   className="dropdown"
                   value={formData.playerType}
                   onChange={handleInputChange}
@@ -400,10 +405,11 @@ const Form = () => {
               </div>
 
               <div>
-                <label htmlFor="previousteam">Batting Hand</label>
+                <label htmlFor="battingHand">Batting Hand</label>
 
                 <select
                   name="battingHand"
+                  id="battingHand"
                   className="dropdown"
                   value={formData.battingHand}
                   onChange={handleInputChange}
@@ -416,10 +422,11 @@ const Form = () => {
               </div>
 
               <div>
-                <label htmlFor="previousteam">Bowling Style</label>
+                <label htmlFor="bowlingStyle">Bowling Style</label>
 
                 <select
                   name="bowlingStyle"
+                  id="bowlingStyle"
                   className="dropdown"
                   value={formData.bowlingStyle}
                   onChange={handleInputChange}
@@ -473,7 +480,7 @@ const Form = () => {
 
             <div className="row">
               <div>
-                <label htmlFor="eco">Highest Wicket</label>
+                <label htmlFor="HighestWicket">Highest Wicket</label>
 
                 <input
                   className="form-inputs"
@@ -487,7 +494,7 @@ const Form = () => {
                 />
               </div>
               <div>
-                <label htmlFor="eco">Overs</label>
+                <label htmlFor="overs">Overs</label>
 
                 <input
                   className="form-inputs"
@@ -508,5 +515,4 @@ const Form = () => {
     </div>
   );
 };
-
-export default Form;
+export default Update;
