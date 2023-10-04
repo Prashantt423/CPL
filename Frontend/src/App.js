@@ -10,7 +10,7 @@ import AuctionScreen from "./Pages/Auction/AuctionControl/Auction";
 import Form from "./Pages/Players/add player/Form";
 import Loginform from "./Pages/Login/Loginform";
 import Signup from "./signup/Signup";
-
+import Update from "./Pages/Players/update";
 function App() {
   const [token, setToken] = useState(localStorage.getItem("token"));
   const [loginFlag, setLoginFlag] = useState(!token);
@@ -36,6 +36,8 @@ function App() {
             <Route path="/signup" element={<Signup />} />
             {/* Default redirect for unknown routes */}
             <Route path="*" element={<Navigate to="/" />} />
+            <Route path="/update" element={<Update/>}/>
+            
           </Routes>
         </div>
       </div>

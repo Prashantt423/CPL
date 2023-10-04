@@ -90,7 +90,7 @@ const Players = () => {
                     <td>{player.strikeRate}</td>
                     <td>{player.economyRate}</td>
                     <td>
-                      <span className="nav-icons">{editIcon}</span>
+                     <Link to="/update"> <span className="nav-icons">{editIcon}</span></Link>
                       <span className="nav-icons">{deleteIcon}</span>
                     </td>
                   </tr>
