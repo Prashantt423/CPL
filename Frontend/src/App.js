@@ -14,11 +14,15 @@ import Update from "./Pages/Players/update";
 function App() {
   const [token, setToken] = useState(localStorage.getItem("token"));
   const [loginFlag, setLoginFlag] = useState(!token);
+  const [logOutFlag , setLogOutFlag] = useState(localStorage.getItem("token"))
+
 
   if (loginFlag) {
     // If not logged in, show the Loginform
     return <Loginform flag={setLoginFlag} />;
   }
+ 
+ 
 
   return (
     <div className="">
@@ -37,6 +41,7 @@ function App() {
             {/* Default redirect for unknown routes */}
             <Route path="*" element={<Navigate to="/" />} />
             <Route path="/update" element={<Update/>}/>
+            <Route path="/login" element={<Loginform/>}/>
             
           </Routes>
         </div>
