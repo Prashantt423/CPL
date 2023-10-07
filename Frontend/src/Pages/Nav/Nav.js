@@ -12,22 +12,16 @@ import Loginform from "../Login/Loginform";
 import { Link } from "react-router-dom";
 import { Navigate } from "react-router-dom";
 
-
 const Nav = () => {
   const dashIcon = <FontAwesomeIcon icon={faTableColumns} />;
   const peopeIcon = <FontAwesomeIcon icon={faPeopleGroup} />;
   const teamIcon = <FontAwesomeIcon icon={faUser} />;
   const auctionIcon = <FontAwesomeIcon icon={faMoneyBills} />;
   const signupIcon = <FontAwesomeIcon icon={faUserPlus} />;
-  const navigate = useNavigate()
-  
+  const navigate = useNavigate();
 
   let logout = () => {
-    console.log("logout");
-    localStorage.removeItem("token");
-    console.log("cookie removed");
-    window.location.reload();
-
+    authService.logOut();
   };
 
   return (
@@ -63,7 +57,9 @@ const Nav = () => {
             </Link>
           </li>
           <li>
-            <Link to="login"><button onClick={logout}>Logout</button></Link>
+            <Link to="login">
+              <button onClick={logout}>Logout</button>
+            </Link>
           </li>
         </ul>
       </nav>

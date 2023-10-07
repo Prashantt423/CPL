@@ -11,18 +11,18 @@ import Form from "./Pages/Players/add player/Form";
 import Loginform from "./Pages/Login/Loginform";
 import Signup from "./signup/Signup";
 import Update from "./Pages/Players/update_player/update";
+
+import "react-toastify/dist/ReactToastify.css";
+
 function App() {
   const [token, setToken] = useState(localStorage.getItem("token"));
   const [loginFlag, setLoginFlag] = useState(!token);
-  const [logOutFlag , setLogOutFlag] = useState(localStorage.getItem("token"))
-
+  const [logOutFlag, setLogOutFlag] = useState(localStorage.getItem("token"));
 
   if (loginFlag) {
     // If not logged in, show the Loginform
     return <Loginform flag={setLoginFlag} />;
   }
- 
- 
 
   return (
     <div className="">
@@ -40,9 +40,9 @@ function App() {
             <Route path="/signup" element={<Signup />} />
             {/* Default redirect for unknown routes */}
             <Route path="*" element={<Navigate to="/" />} />
-            
-            <Route path="/login" element={<Loginform/>}/>
-            
+
+            <Route path="/login" element={<Loginform />} />
+
             <Route path="/update/:id" element={<Update />} />
           </Routes>
         </div>

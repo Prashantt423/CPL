@@ -3,36 +3,62 @@ import "./login.css";
 import logo from "../Assets/Images/logo/logo.png";
 import authService from "../../Services/auth.service";
 import { useNavigate } from "react-router-dom";
-import { Link } from "react-router-dom";
-import Dashboard from "../Dashboard/Dashboard";
+
+import { toast, ToastContainer } from "react-toastify";
 
 const Loginform = ({ flag }) => {
-  const [user, setUser] = useState();
   const [dropDown, setDropDown] = useState("Admin");
   const [checkDropDown, setCheckDropdown] = useState("Knights");
   const [password, setPassword] = useState("");
   const [email, setEmail] = useState("");
   const navigate = useNavigate();
 
+  // check if user is already logged-in, then redirect to dashboard
   useEffect(() => {
-    const getUser = authService.getCurruntUser();
+    const getUser = authService.getCurrentUser();
     if (getUser) {
       navigate("/", { replace: true });
     }
   }, []);
 
+  const formValidation = function () {
+    if (password.length < 8) {
+      toast.error("Password must be of 8 characters or more");
+      return false;
+    }
+    let mailformat = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+    if (email.match(mailformat)) {
+      return true;
+    } else {
+      toast.error("Invalid Email format");
+      return false;
+    }
+  };
+
+  // ON LOGIN FORM SUBMIT
   const handleLogin = async (e) => {
     e.preventDefault();
 
-    try {
-      const response = await authService.logIn(email, password);
+    if (formValidation()) {
+      try {
+        const res = await authService.logIn(email, password);
 
-      localStorage.setItem("user", JSON.stringify(response.data));
+        console.log("IROMAN : ", res);
 
-      navigate("/", { replace: true });
-      flag(false);
-    } catch (error) {
-      console.log(error);
+        navigate("/", { replace: true });
+        flag(false);
+      } catch (error) {
+        console.log(error);
+        if (error.response.data.status === "User not found") {
+          toast.error("User Not found, try another email..");
+          setEmail("");
+          setPassword("");
+        }
+        if (error.response.data.status === "invalid password") {
+          toast.error("Invalid password");
+          setPassword("");
+        }
+      }
     }
   };
 
@@ -84,6 +110,8 @@ const Loginform = ({ flag }) => {
               name="email"
               id="email"
               placeholder="Email"
+              required
+              value={email}
               onChange={(e) => {
                 setEmail(e.target.value);
               }}
@@ -92,6 +120,8 @@ const Loginform = ({ flag }) => {
               type="password"
               name="password"
               placeholder="Password"
+              required
+              value={password}
               onChange={(e) => {
                 setPassword(e.target.value);
               }}
@@ -101,6 +131,7 @@ const Loginform = ({ flag }) => {
           </form>
         </div>
       </div>
+      <ToastContainer position="top-right" autoClose={3000} />
     </div>
   );
 };

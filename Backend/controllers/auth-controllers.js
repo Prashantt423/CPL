@@ -55,7 +55,8 @@ exports.loginUser = catchAsync(async (req, res) => {
   const user = await User.findOne({ email: value.email });
 
   if (!user) {
-    return next(new AppError("User not found", 404));
+    // return next(new AppError("User not found", 404));
+    return sendResponse(res, 401, "User not found");
   }
   if (user.status === "banned") {
     return next(new AppError("User is banned and cannot log in", 401));
@@ -75,13 +76,14 @@ exports.loginUser = catchAsync(async (req, res) => {
       // sameSite: 'strict'
     });
     console.log("Cookie set.");
-    return sendResponse(res, 200, "User login successfully", { token });
+    myuser = { name: user.name, role: user.role };
+    return sendResponse(res, 200, "User login successfully", { token, myuser });
   } else {
-    return next(new AppError("Invalid password", 401));
+    return sendResponse(res, 401, "invalid password");
   }
 });
 
-// List All Players
+// List All Users
 exports.listAllUsers = catchAsync(async (req, res) => {
   const users = await User.find();
   return sendResponse(res, 200, "List of all players", users);
