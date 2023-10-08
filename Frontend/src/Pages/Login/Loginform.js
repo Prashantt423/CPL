@@ -8,7 +8,7 @@ import { toast, ToastContainer } from "react-toastify";
 
 const Loginform = ({ flag }) => {
   const [roleDropdown, setroleDropdown] = useState("admin");
-  const [checkDropDown, setCheckDropdown] = useState("Knights");
+  const [teamDropdown, setteamDropdown] = useState("Knights");
   const [password, setPassword] = useState("");
   const [email, setEmail] = useState("");
   const navigate = useNavigate();
@@ -39,26 +39,28 @@ const Loginform = ({ flag }) => {
   const handleLogin = async (e) => {
     e.preventDefault();
 
-    if (formValidation()) {
-      try {
-        const res = await authService.logIn(email, password);
-
-        console.log("IROMAN : ", res);
-
-        navigate("/", { replace: true });
-        flag(false);
-      } catch (error) {
-        console.log(error);
-        if (error.response.data.status === "User not found") {
-          toast.error("User Not found, try another email..");
-          setEmail("");
-          setPassword("");
-        }
-        if (error.response.data.status === "invalid password") {
-          toast.error("Invalid password");
-          setPassword("");
+    if (roleDropdown === "admin") {
+      if (formValidation()) {
+        try {
+          const res = await authService.logIn(email, password);
+          navigate("/", { replace: true });
+          flag(false);
+        } catch (error) {
+          console.log(error);
+          if (error.response.data.status === "User not found") {
+            toast.error("User Not found, try another email..");
+            setEmail("");
+            setPassword("");
+          }
+          if (error.response.data.status === "invalid password") {
+            toast.error("Invalid password");
+            setPassword("");
+          }
         }
       }
+    }
+    if (roleDropdown === "team") {
+      toast.error("WELCOME " + teamDropdown);
     }
   };
 
@@ -92,7 +94,7 @@ const Loginform = ({ flag }) => {
               title="team"
               style={{ display: roleDropdown === "team" ? "block" : "none" }}
               onChange={(e) => {
-                setCheckDropdown(e.target.value);
+                setteamDropdown(e.target.value);
               }}
             >
               <option value="Knights">Knights</option>
@@ -115,7 +117,7 @@ const Loginform = ({ flag }) => {
               name="email"
               id="email"
               placeholder="Email"
-              required
+              // required
               style={{ display: roleDropdown === "admin" ? "block" : "none" }}
               onChange={(e) => {
                 setEmail(e.target.value);
