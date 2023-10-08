@@ -60,7 +60,7 @@ const Loginform = ({ flag }) => {
       }
     }
     if (roleDropdown === "team") {
-      toast.error("WELCOME " + teamDropdown);
+      toast.success("WELCOME " + teamDropdown);
     }
   };
 

@@ -4,40 +4,74 @@ import allRounderlogo from "../../Assets/Images/player_type_icons/All_rounder.pn
 import batterlogo from "../../Assets/Images/player_type_icons/batter.png";
 import bowlerlogo from "../../Assets/Images/player_type_icons/bowler.png";
 import { useState } from "react";
+import axios from "axios";
+import { useParams } from "react-router";
+import { useEffect } from "react";
 
 const AuctionScreen = () => {
   // const playerImage = playerlogo;
+  const [playerData, setPlayerData] = useState();
+  const { id } = useParams();
+  const [bidprice, setbidprice] = useState(0);
 
-  const [bidprice, setbidprice] = useState(1000);
+  useEffect(() => {
+    // console.log("new bid price : ", bidprice);
+  }, [bidprice]);
+
+  function incrementBidPrice(n) {
+    let currentbidprice = bidprice;
+    setbidprice(Number(currentbidprice) + Number(n));
+  }
+
+  useEffect(() => {
+    // console.log("id", id);
+    // console.log("random fetching");
+
+    try {
+      axios
+        .get("http://localhost:6001/player/random", { withCredentials: true })
+        .then((response) => {
+          // console.log("done");
+          // console.log("Random Player data:", response.data.data);
+          setPlayerData(response.data.data);
+          setbidprice(Number(response.data.data.bidPrice));
+        })
+        .catch((err) => console.log("Error fetching player data:", err));
+    } catch (error) {
+      console.log("error", error);
+    }
+  }, []);
 
   return (
     <div className="wrapper">
       <div className="profile">
         <img src={playerlogo} alt="current player logo" />
-        <div>
-          <h3 className="playerName">MS DHONI</h3>
-          <div className="player-summary">
-            <div>
-              <div className="summary-title">Base Price</div>
-              <div className="summary-stats">15,000</div>
+        {playerData && (
+          <div>
+            <h3 className="playerName">{playerData.name}</h3>
+            <div className="player-summary">
+              <div>
+                <div className="summary-title">Base Price</div>
+                <div className="summary-stats">{playerData.basePrice}</div>
+              </div>
+              <div>
+                <div className="summary-title">Type</div>
+                <div className="summary-stats">{playerData.playerType}</div>
+              </div>
+              <div>
+                <div className="summary-title">Runs</div>
+                <div className="summary-stats">{playerData.totalRuns}</div>
+              </div>
+              <div>
+                <div className="summary-title">Wicket</div>
+                <div className="summary-stats">{playerData.totalWickets}</div>
+              </div>
             </div>
-            <div>
-              <div className="summary-title">Type</div>
-              <div className="summary-stats">15000</div>
-            </div>
-            <div>
-              <div className="summary-title">Runs</div>
-              <div className="summary-stats">106</div>
-            </div>
-            <div>
-              <div className="summary-title">Wicket</div>
-              <div className="summary-stats">65</div>
+            <div className="sold-wrapper">
+              <button className="soldbtn">SOLD</button>
             </div>
           </div>
-          <div className="sold-wrapper">
-            <button className="soldbtn">SOLD</button>
-          </div>
-        </div>
+        )}
       </div>
       <div className="auction-control">
         <h3>Auction Control</h3>
@@ -46,16 +80,37 @@ const AuctionScreen = () => {
           <div>
             <label>Biding Price</label>
             <input
-              value={bidprice}
+              onChange={(e) => {
+                setbidprice(Number(e.target.value));
+              }}
               id="bid-input"
               className="bid-input"
               type="number"
+              value={bidprice}
             />
           </div>
 
-          <button onClick={incrementBidPrice}>+ 100</button>
-          <button>+ 500</button>
-          <button>+ 1000</button>
+          <button
+            onClick={() => {
+              incrementBidPrice(100);
+            }}
+          >
+            + 100
+          </button>
+          <button
+            onClick={() => {
+              incrementBidPrice(500);
+            }}
+          >
+            + 500
+          </button>
+          <button
+            onClick={() => {
+              incrementBidPrice(1000);
+            }}
+          >
+            + 1000
+          </button>
         </div>
 
         <div className="update-bid-wrapper">
@@ -155,7 +210,3 @@ const AuctionScreen = () => {
   );
 };
 export default AuctionScreen;
-
-function incrementBidPrice() {
-  alert("clicked");
-}

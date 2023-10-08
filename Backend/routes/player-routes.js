@@ -5,13 +5,24 @@ const { upload, resizeImagePlayer } = require("./../utils/image-upload");
 
 const router = express.Router();
 
+// get random player
+router.get(
+  "/random",
+  authController.isLoggedIn,
+  playerController.getRandomPlayer
+);
+
+// Get all players
 router.get("/", authController.isLoggedIn, playerController.listAllPlayers);
+
+// Get single player by id
 router.get(
   "/:playerID",
   authController.isLoggedIn,
   playerController.getPlayerById
 );
 
+// Create new player
 router.post(
   "/add",
   authController.isLoggedIn,
@@ -19,6 +30,8 @@ router.post(
   resizeImagePlayer,
   playerController.createPlayer
 );
+
+// Update a single player by id
 router.put(
   "/update/:playerID",
   authController.isLoggedIn,
@@ -26,17 +39,15 @@ router.put(
   resizeImagePlayer,
   playerController.updatePlayer
 );
+
+// Delete a single player by id
 router.delete(
   "/delete/:playerID",
   authController.isLoggedIn,
   playerController.deletePlayer
 );
 
-router.get(
-  "/random",
-  authController.isLoggedIn,
-  playerController.getRandomPlayer
-);
+// get player by its type
 router.get(
   "/:playerType",
   authController.isLoggedIn,

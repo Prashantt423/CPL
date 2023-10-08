@@ -30,7 +30,7 @@
     width: auto;
     padding: 2vw 0px;
 }
-
+/* 
 .child-position input, select,option{
     width: 70%;
     margin-left: auto;
@@ -41,7 +41,7 @@
     background-color: rgb(226, 234, 241);
     font-size: 18px;
     font-weight: 700;
-}
+} */
 
 .child-position form input:nth-of-type(1){
     margin-top: 4vh;
