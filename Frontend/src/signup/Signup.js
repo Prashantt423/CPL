@@ -39,7 +39,7 @@ const Signup = () => {
       toast.error("Password and comnfirm password must be same");
       return false;
     }
-    let mailformat = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+    let mailformat = /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/;
     if (email.match(mailformat)) {
       return true;
     } else {

@@ -7,7 +7,7 @@ import { useNavigate } from "react-router-dom";
 import { toast, ToastContainer } from "react-toastify";
 
 const Loginform = ({ flag }) => {
-  const [dropDown, setDropDown] = useState("Admin");
+  const [roleDropdown, setroleDropdown] = useState("admin");
   const [checkDropDown, setCheckDropdown] = useState("Knights");
   const [password, setPassword] = useState("");
   const [email, setEmail] = useState("");
@@ -62,60 +62,67 @@ const Loginform = ({ flag }) => {
     }
   };
 
-  let content;
-  if (dropDown === "Team") {
-    content = (
-      <select
-        name="team"
-        id="team"
-        onChange={(e) => {
-          setCheckDropdown(e.target.value);
-        }}
-      >
-        <option value="Knights">Knights</option>
-        <option value="Hurricanes">Hurricanes</option>
-        <option value="Royals">Royals</option>
-        <option value="Blaster">Blaster</option>
-        <option value="Star">Star</option>
-        <option value="Panthers">Panthers</option>
-        <option value="Empire">Empire</option>
-        <option value="Wolves">Wolves</option>
-        <option value="Super Kings">Super Kings</option>
-        <option value="Strikers">Strikers</option>
-        <option value="Titans">Titans</option>
-        <option value="Falcons">Falcons</option>
-      </select>
-    );
-  }
   return (
     <div className="background login-form-wrapper">
       <div className="child child-position">
         <img src={logo} alt="CPL logo" />
+
         <div className="content">
           <h3>Welcome</h3>
           <p>Enter Your Credentials to Proceed</p>
+
           <form onSubmit={handleLogin}>
+            {/* SELECT ROLE */}
             <select
               name="user"
               id="user"
+              title="user"
               onChange={(e) => {
-                setDropDown(e.target.value);
+                setroleDropdown(e.target.value);
               }}
             >
               <option value="admin">Administrator</option>
               <option value="team">Team</option>
             </select>
+
+            {/* SELECT TEAM */}
+            <select
+              name="team"
+              id="team"
+              title="team"
+              style={{ display: roleDropdown === "team" ? "block" : "none" }}
+              onChange={(e) => {
+                setCheckDropdown(e.target.value);
+              }}
+            >
+              <option value="Knights">Knights</option>
+              <option value="Hurricanes">Hurricanes</option>
+              <option value="Royals">Royals</option>
+              <option value="Blaster">Blaster</option>
+              <option value="Star">Star</option>
+              <option value="Panthers">Panthers</option>
+              <option value="Empire">Empire</option>
+              <option value="Wolves">Wolves</option>
+              <option value="Super Kings">Super Kings</option>
+              <option value="Strikers">Strikers</option>
+              <option value="Titans">Titans</option>
+              <option value="Falcons">Falcons</option>
+            </select>
+
+            {/* EMAIL */}
             <input
               type="text"
               name="email"
               id="email"
               placeholder="Email"
               required
-              value={email}
+              style={{ display: roleDropdown === "admin" ? "block" : "none" }}
               onChange={(e) => {
                 setEmail(e.target.value);
               }}
             />
+
+            {/* PASSWORD */}
             <input
               type="password"
               name="password"
@@ -126,8 +133,7 @@ const Loginform = ({ flag }) => {
                 setPassword(e.target.value);
               }}
             />
-
-            <button className="logo">LogIn</button>
+            <input type="submit" value="LOGIN" />
           </form>
         </div>
       </div>

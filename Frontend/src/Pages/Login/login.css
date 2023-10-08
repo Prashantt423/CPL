@@ -1,93 +1,59 @@
-* {
-    font-family: Verdana, Geneva, Tahoma, sans-serif;
-}
-
-.background {
-    background-color: #6c5cbe;
+.login-form-wrapper{
+    background: rgb(18, 12, 109);
+    background: linear-gradient(24deg, rgba(18, 12, 109, 1) 0%, rgba(18, 18, 153, 1) 16%, rgba(173, 17, 195, 1) 100%);
     height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
+}
+
+.login-form-wrapper .child-position{
+    background-color: white;
+    width: 400px;
+    height: 80vh;
+    border-radius: 10px;
+    text-align: center;
+    padding: 2vw 4vw;
+    
+}
+
+.login-form-wrapper img{
+    margin-left: 100px;
+}
+
+.child-position form{
+    display: flex;
     flex-direction: column;
-}
-
-.child {
-    background-color: #fff;
-    height: 600px;
-    width: 500px;
-
-    border-radius: 15px;
-    color: black;
-}
-
-.content {
-    display: block;
-    position: relative;
-    top: 5em;
+    gap: 1vw;
+    justify-content: center;
     text-align: center;
-
+    width: auto;
+    padding: 2vw 0px;
 }
 
-.content p {
-    color: #7a7a7f;
-    margin-top: -6.6em;
-
-}
-
-.content form input,
-.content input:focus,
-.content select {
-    display: block;
-    margin-left: 24%;
-    margin-top: 4em;
-    padding: 0.5em;
-    width: 50%;
-    border-radius: 13px;
-    background: #e3e3e6;
+.child-position input, select,option{
+    width: 70%;
+    margin-left: auto;
+    margin-right: auto;
+    padding: .7vw;
     border: none;
+    border-radius: 7px;
+    background-color: rgb(226, 234, 241);
+    font-size: 18px;
+    font-weight: 700;
 }
 
-.content button {
-    margin-top: 3em;
-    background-color: #6c5cbe;
+.child-position form input:nth-of-type(1){
+    margin-top: 4vh;
+}
+.child-position #team{
+    margin-top: 4vh;
+    width: 77%;
+}
+.child-position form input:nth-of-type(3){
+    background-color: black;
     color: white;
-    width: 50%;
-    border: none;
-    border-radius: 13px;
-    height: 3em;
-    cursor: pointer;
+    margin-top: 6vh;
 }
 
-.rights {
-    text-align: center;
-}
 
-.login-form-wrapper img {
-    display: block;
-    margin-left: 40%;
-    margin-top: 2vw;
-}
-
-.content h3 {
-    margin-top: 1.3em;
-    position: relative;
-    bottom: 5em;
-}
-
-#user {
-    position: relative;
-    bottom: 2em;
-    padding: 10px;
-}
-
-#team,
-#username {
-    position: relative;
-    margin-top: -14.1em;
-}
-
-.message {
-    position: relative;
-    top: 18em !important;
-    margin-left: 18%;
-}
