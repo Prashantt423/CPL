@@ -59,8 +59,8 @@ const Players = () => {
               <th>Type</th>
               <th>Base Price</th>
               <th>Bid Price</th>
-              <th>Average</th>
-              <th>SR</th>
+              <th>SOLD/UNSOLD</th>
+              <th>Current Team</th>
               <th>ECO</th>
               <th>Actions</th>
             </tr>
@@ -86,8 +86,20 @@ const Players = () => {
                     </td>
                     <td>{player.basePrice}</td>
                     <td>{player.bidPrice}</td>
-                    <td>{player.average}</td>
-                    <td>{player.strikeRate}</td>
+                    <td>
+                      <span
+                        style={{
+                          color:
+                            player.currentTeam === "None" ? "red" : "green",
+                          fontWeight: "700",
+                        }}
+                      >
+                        {player.currentTeam === "None" ? "UNSOLD" : "SOLD"}
+                      </span>
+                    </td>
+                    <td>
+                      {player.currentTeam === "None" ? "-" : player.currentTeam}
+                    </td>
                     <td>{player.economyRate}</td>
                     <td>
                       <Link to={`/update/${player._id}`}>

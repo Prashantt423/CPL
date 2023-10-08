@@ -79,6 +79,7 @@ const Loginform = ({ flag }) => {
               name="user"
               id="user"
               title="user"
+              className="login-form-input"
               onChange={(e) => {
                 setroleDropdown(e.target.value);
               }}
@@ -92,6 +93,7 @@ const Loginform = ({ flag }) => {
               name="team"
               id="team"
               title="team"
+              className="login-form-input"
               style={{ display: roleDropdown === "team" ? "block" : "none" }}
               onChange={(e) => {
                 setteamDropdown(e.target.value);
@@ -117,7 +119,7 @@ const Loginform = ({ flag }) => {
               name="email"
               id="email"
               placeholder="Email"
-              // required
+              className="login-form-input"
               style={{ display: roleDropdown === "admin" ? "block" : "none" }}
               onChange={(e) => {
                 setEmail(e.target.value);
@@ -126,6 +128,7 @@ const Loginform = ({ flag }) => {
 
             {/* PASSWORD */}
             <input
+              className="login-form-input"
               type="password"
               name="password"
               placeholder="Password"
@@ -135,7 +138,7 @@ const Loginform = ({ flag }) => {
                 setPassword(e.target.value);
               }}
             />
-            <input type="submit" value="LOGIN" />
+            <input className="login-form-input" type="submit" value="LOGIN" />
           </form>
         </div>
       </div>
