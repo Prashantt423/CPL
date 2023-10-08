@@ -8,11 +8,13 @@ import axios from "axios";
 import { useParams } from "react-router";
 import { useEffect } from "react";
 
-const AuctionScreen = () => {
+const AuctionControl = () => {
   // const playerImage = playerlogo;
   const [playerData, setPlayerData] = useState();
   const { id } = useParams();
   const [bidprice, setbidprice] = useState(0);
+  const [newTeam, setnewTeam] = useState("Knights");
+  const [nextPlayerType, setnextPlayerType] = useState("allrounder");
 
   useEffect(() => {
     // console.log("new bid price : ", bidprice);
@@ -125,7 +127,29 @@ const AuctionScreen = () => {
                   <label>New Team</label>
                 </td>
                 <td>
-                  <input className="nextplayer-input" type="number" />
+                  {/* SELECT TEAM */}
+                  <select
+                    name="team"
+                    id="team-dropdown"
+                    title="team"
+                    className="nextplayer-input"
+                    onChange={(e) => {
+                      setnewTeam(e.target.value);
+                    }}
+                  >
+                    <option value="Knights">Knights</option>
+                    <option value="Hurricanes">Hurricanes</option>
+                    <option value="Royals">Royals</option>
+                    <option value="Blaster">Blaster</option>
+                    <option value="Star">Star</option>
+                    <option value="Panthers">Panthers</option>
+                    <option value="Empire">Empire</option>
+                    <option value="Wolves">Wolves</option>
+                    <option value="Super Kings">Super Kings</option>
+                    <option value="Strikers">Strikers</option>
+                    <option value="Titans">Titans</option>
+                    <option value="Falcons">Falcons</option>
+                  </select>
                 </td>
               </tr>
               <tr>
@@ -133,7 +157,16 @@ const AuctionScreen = () => {
                   <label>Next Player</label>
                 </td>
                 <td>
-                  <input className="nextplayer-input" type="number" />
+                  <select
+                    className="nextplayer-input"
+                    onChange={(e) => {
+                      setnextPlayerType(e.target.value);
+                    }}
+                  >
+                    <option value="allrounder">All rounder</option>
+                    <option value="batsman">Batsman</option>
+                    <option value="bowler">Bowler</option>
+                  </select>
                 </td>
               </tr>
             </table>
@@ -209,4 +242,4 @@ const AuctionScreen = () => {
     </div>
   );
 };
-export default AuctionScreen;
+export default AuctionControl;

@@ -79,6 +79,9 @@
 .bid-control button{
     padding: .5vw 2vw;
     border: none;
+    font-size: 1vw;
+    font-weight: 600;
+    cursor: pointer;
 }
 
 .bid-input{
@@ -100,6 +103,7 @@
 
 .update-bid-btn{
     padding: 1vw 3vw;
+    cursor: pointer;
 }
 
 .nextplayer{
@@ -119,7 +123,8 @@
     border: none;
     background-color: #e8e8e8;
     margin-left: .5vw;
-    width: 7vw;
+    width: 9vw;
+    font-size: 1.2vw;
     
 }
 
@@ -129,8 +134,8 @@
 
 
 .nextplayer-left label{
-    font-weight: 300;
-    font-size: 1.2vw;
+    font-weight: 600;
+    font-size: 1vw;
 
 } 
 
@@ -141,11 +146,13 @@
 }
 
 .soldplayer-stats{
- margin-right: 2vw;
+ margin-right: .5vw;
 }
 
 .player-type-icon{
-    height: 1.2vw;
+    height: 25px;
+    width: 25px;
+    opacity: .4;
     margin-bottom: 1vw;
 }
 
@@ -159,8 +166,11 @@
 
 .icon-wrapper{
     display: flex;
+    
 }
 .icon-wrapper div{
-    padding: 0vw .5vw;
+    padding: 0vw 1vw;
     text-align: center;
+    display: flex;
+    flex-direction: column;
 }
