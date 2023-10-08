@@ -12,7 +12,6 @@ import Form from "./Pages/Players/add player/Form";
 import Loginform from "./Pages/Login/Loginform";
 import Signup from "./signup/Signup";
 import Update from "./Pages/Players/update_player/update";
-
 import "react-toastify/dist/ReactToastify.css";
 
 function App() {
