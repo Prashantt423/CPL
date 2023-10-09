@@ -8,7 +8,7 @@ import axios from "axios";
 import { useParams } from "react-router";
 import { useEffect } from "react";
 
-const AuctionControl = () => {
+const AuctionControl = ({ socket }) => {
   // const playerImage = playerlogo;
   const [playerData, setPlayerData] = useState();
   const { id } = useParams();
@@ -16,29 +16,58 @@ const AuctionControl = () => {
   const [newTeam, setnewTeam] = useState("Knights");
   const [nextPlayerType, setnextPlayerType] = useState("allrounder");
 
-  useEffect(() => {
-    // console.log("new bid price : ", bidprice);
-  }, [bidprice]);
-
   function incrementBidPrice(n) {
     let currentbidprice = bidprice;
-    setbidprice(Number(currentbidprice) + Number(n));
-  }
 
+    setbidprice(Number(currentbidprice) + Number(n));
+    socket.emit("increment_bid", Number(currentbidprice) + Number(n));
+  }
+  const updatePlayerData = async () => {
+    try {
+      // const updatedPlayer = await axios.put(
+      //   `http://localhost:6001/player/update/${playerData._id}`,
+      //   { withCredentials: true },
+      //   playerData
+      // );
+      const updatedUser = {
+        ...playerData,
+        ["bidPrice"]: bidprice,
+        ["currentTeam"]: newTeam,
+      };
+      const updatedPlayer = await axios({
+        method: "put",
+        url: `http://localhost:6001/player/update/${playerData._id}`,
+        withCredentials: true,
+        data: updatedUser,
+      });
+      console.log(updatedPlayer);
+    } catch (e) {
+      console.log(e);
+    }
+  };
+  const handleSelling = async () => {
+    await updatePlayerData(playerData);
+    refreshPlayer();
+  };
+  const refreshPlayer = () => {
+    axios
+      .get("http://localhost:6001/player/random", { withCredentials: true })
+      .then((response) => {
+        // console.log("done");
+        // console.log("Random Player data:", response.data.data);
+        setPlayerData(response.data.data);
+        setbidprice(Number(response.data.data.bidPrice));
+        console.log(socket?.id);
+        socket.emit("player_data", response.data.data);
+      })
+      .catch((err) => console.log("Error fetching player data:", err));
+  };
   useEffect(() => {
     // console.log("id", id);
     // console.log("random fetching");
 
     try {
-      axios
-        .get("http://localhost:6001/player/random", { withCredentials: true })
-        .then((response) => {
-          // console.log("done");
-          // console.log("Random Player data:", response.data.data);
-          setPlayerData(response.data.data);
-          setbidprice(Number(response.data.data.bidPrice));
-        })
-        .catch((err) => console.log("Error fetching player data:", err));
+      refreshPlayer();
     } catch (error) {
       console.log("error", error);
     }
@@ -70,7 +99,9 @@ const AuctionControl = () => {
               </div>
             </div>
             <div className="sold-wrapper">
-              <button className="soldbtn">SOLD</button>
+              <button onClick={handleSelling} className="soldbtn">
+                SOLD
+              </button>
             </div>
           </div>
         )}
@@ -135,6 +166,7 @@ const AuctionControl = () => {
                     className="nextplayer-input"
                     onChange={(e) => {
                       setnewTeam(e.target.value);
+                      socket.emit("change_wining_bid_team", e.target.value);
                     }}
                   >
                     <option value="Knights">Knights</option>
